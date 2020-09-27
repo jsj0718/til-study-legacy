@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>list style2 example</title>
+    <style>
+        ul {
+            list-style : none; /* 아무런 불릿을 붙이지 않는다. */
+            text-align : center; /* 리스트 안 텍스트가 중앙 정렬 */
+            /* 리스트의 위 아래에 경계선을 그린다. padding은 다음 장에서 배운다. */
+            border-top : 2px solid red; border-bottom : 2px solid red; padding : 10px 0;
+        }
+        ul li {
+            display : inline; /* 리스트 항목이 한 줄에 차례대로 배치된다. */
+            text-transform : uppercase; /* 대문자 */
+            padding : 0 10px; letter-spacing : 10px; /* 항목 간의 간격(padding)과 글자 간격(letter-spacing) 설정 */
+        }
+        ul li a {
+            text-decoration : none;
+            color : black; /* 마우스가 위에 가면 밑줄이 그어진다. */ 
+        }
+        ul li a:hover {
+            text-decoration : underline;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li><a href="#">HOME</a></li>
+        <li><a href="#">BLOG</a></li>
+        <li><a href="#">ABOUT</a></li>
+        <li><a href="#">CONTACT</a></li>
+    </ul>
+</body>
+</html>
