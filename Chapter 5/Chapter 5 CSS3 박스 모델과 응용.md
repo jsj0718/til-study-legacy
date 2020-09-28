@@ -72,19 +72,19 @@
   * border-style이 설정되어 있어야 border-width가 동작한다
 
     *     <style>
-                p.thick {
-                    border-style : solid;
-                    border-width : thick;
-                }
-                p.medium {
-                    border-style : solid;
-                    border-width : medium;
-                }
-                p.thin {
-                    border-style : solid;
-                    border-width : 1px;
-                }
-            </style>
+                    p.thick {
+                        border-style : solid;
+                        border-width : thick;
+                    }
+                    p.medium {
+                        border-style : solid;
+                        border-width : medium;
+                    }
+                    p.thin {
+                        border-style : solid;
+                        border-width : 1px;
+                    }
+                </style>
 
     * <img src="C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20200927132212557.png" alt="image-20200927132212557" style="zoom:67%;" />
 
@@ -102,9 +102,9 @@
 
     * <style>
               p.green {
-                    border-style : solid;
-                    border-color : green;
-                }
+                        border-style : solid;
+                        border-color : green;
+                    }
       </style>
 
     * ![image-20200927132448557](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20200927132448557.png)
@@ -127,11 +127,11 @@
 
     * <style>
               div {
-                    border : 2px solid red;
-                    padding : 10px 20px;
-                    border-radius : 25px;
-                }
-            </style>
+                        border : 2px solid red;
+                        padding : 10px 20px;
+                        border-radius : 25px;
+                    }
+                </style>
 
     * ![image-20200927132936849](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20200927132936849.png)
 
@@ -151,12 +151,12 @@
 
       * <style>
                 div {
-                      width : 300px;
-                      height : 50px;
-                      background-color : green;
-                      box-shadow : 20px 10px 5px #666666;
-                  }
-              </style>
+                          width : 300px;
+                          height : 50px;
+                          background-color : green;
+                          box-shadow : 20px 10px 5px #666666;
+                      }
+                  </style>
 
       * ![image-20200927133355382](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20200927133355382.png)
 
@@ -187,14 +187,14 @@
 
     * <style>
               div {
-                    border : 1px solid red;
-                    background-color : yellow;
-                    width : 100px;
-                    height : auto;
-                    resize : both;
-                    overflow : auto;
-                }
-            </style>
+                        border : 1px solid red;
+                        background-color : yellow;
+                        width : 100px;
+                        height : auto;
+                        resize : both;
+                        overflow : auto;
+                    }
+                </style>
 
     * <img src="C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20200927135101050.png" alt="image-20200927135101050" style="zoom:50%;" />
 
@@ -253,19 +253,19 @@
 * 마진 / 패딩 예제
 
   *     <style>
-              p.t1 {
-                  margin : 0px;
-                  padding : 0px;
-                  border : 2px solid red;
-                  background-color : yellow;
-              }
-              p.t2 {
-                  margin : 10px;
-                  padding : 20px;
-                  border : 2px solid red;
-                  background-color : green;
-              }
-          </style>
+                  p.t1 {
+                      margin : 0px;
+                      padding : 0px;
+                      border : 2px solid red;
+                      background-color : yellow;
+                  }
+                  p.t2 {
+                      margin : 10px;
+                      padding : 20px;
+                      border : 2px solid red;
+                      background-color : green;
+                  }
+              </style>
 
   * ![image-20200927140052870](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20200927140052870.png)
 
@@ -605,7 +605,7 @@
 
 * 테이블 텍스트 정렬
   * 테이블 안의 text-align은 테이블 안의 텍스트 정렬(left, right, center)
-  * 수직 방향 정렬은 vertical-align을 사용
+  * 수직 방향 정렬은 vertical-align을 사용(top, bottom)
 
 
 
@@ -619,3 +619,7 @@
 * 공백 셀 표시 여부
   * 내용을 가지고 있지 않은 공백 셀의 표시 여부는 empty-cells로 지정
   * empty-cells : 공백 셀의 표시 여부 (show / hide / inherit)
+
+
+
+* 짝수행과 홀수행을 다르게 하는 것을 자동으로 하기  위해 JS를 이용하거나 CSS 선택자의 nth-child를 사용
