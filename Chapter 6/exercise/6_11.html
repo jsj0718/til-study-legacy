@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6_11</title>
+    <style>
+        div {
+            background-color: red;
+            width: 100px;
+            height: 100px;
+            position: relative; /* 애니메이션을 위해 포지션 설정(relative)이 필요 */
+            animation: 2s myanim;
+            animation-iteration-count: 10;
+        }
+        @keyframes myanim {
+            0% {left: 0px; top:0px}
+            25% {left: 300px; top:0px}
+            50% {left: 300px; top:300px}
+            75% {left: 0px; top:300px}
+            100% {left: 0px; top:0px}
+        }
+
+    </style>
+</head>
+<body>
+    <div></div>
+</body>
+</html>
