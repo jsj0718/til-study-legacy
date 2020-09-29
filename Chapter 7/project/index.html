@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index.html</title>
+</head>
+<body>
+    <header>
+        <!-- 헤더에 해당하는 콘텐츠 배치 -->
+        <h1><img src="" width="50" height="50"><a href="index.html">Web Shop</a></h1>
+    </header>
+    <nav>
+        <!-- 내비게이션에 해댕하는 콘텐츠 배치 -->
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html">About Us</a></li>
+            <li><a href="index.html">News</a></li>
+            <li><a href="index.html">Mv Account</a></li>
+            <li><a href="index.html">Contacts</a></li>
+        </ul>
+    </nav>
+    <aside id="left">
+        <!-- 상품 카테고리 메뉴 배치 -->
+        <h4>카테고리</h4>
+        <ul>
+            <li><a target="iframe1" href="computer.html">컴퓨터</a></li>
+            <li><a target="iframe1" href="clothing.html">의류</a></li>
+            <li><a target="iframe1" href="music.html">음악</a></li>
+            <li><a target="iframe1" href="movie.html">영화</a></li>
+            <li><a target="iframe1" href="computer.html">스포츠/레저</a></li>
+            <li><a target="iframe1" href="computer.html">가구/인테리어</a></li>
+            <li><a target="iframe1" href="computer.html">식품</a></li>
+        </ul>
+    </aside>
+    <section id="main">
+        <article id="article1">
+            <!-- 상품에 대한 정보 배치 -->
+            <iframe name="iframe1" src="computer.html" width="440" height="300" seamless></iframe> <!--seamless는 iframe이 페이지의 일부인 것처럼 이음새 없이 화면에 표시하는 속성-->
+        </article>
+    </section>
+    <aside id="right">
+        <!-- 쇼핑카트와 로그인 정보 배치 -->
+        <div id="shopcart">
+            <h4>Shopping Cart</h4>
+            현재 쇼핑카트에 물품이 없습니다. <br>
+            <a href="shopcart.html">쇼핑카트 보기</a>
+        </div>
+        <div id="login">
+            <h4>Log in</h4>
+            <form action="process_login.jsp" method="post"> <!-- 클라이언트 컴퓨터와 서버 컴퓨터 사이의 상호작용은 form 태그를 통해 이뤄진다고 생각하자! -->
+                아이디
+                <input type="text"> <br>
+                패스워드
+                <input type="password"> <br>
+                <input type="submit" value="로그인">
+                <input type="reset" value="초기화"> <br>
+                <a href="register.html" target="_blank" id="register">회원가입</a>
+                <a href="#" id="forgot">비밀번호 분실</a>
+            </form>
+        </div>
+    </aside>
+    <footer> 
+        <!-- 각주에 해당하는 내용 배치 -->
+        Copyright (c) 2013 Web Shop
+    </footer>
+</body>
+</html>
