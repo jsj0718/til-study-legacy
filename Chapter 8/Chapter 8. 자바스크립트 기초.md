@@ -250,6 +250,277 @@
 * 변수 명명 규칙
 
   * 문자로 시작 (숫자 시작 x)
+
   * $나 _로 시작할 수 있다.
+
   * 대소문자 구분한다.
+
+  * 자료형을 지정하지 않는다. (문자열은  ""나 ''로 사용해서 표현)
+
+    var name = "Hong";
+
+  * 자바스크립트에서 보통 낙타체를 사용한다.
+
+  * 예시
+
+    ```html
+        <script>
+            var x;
+            x = "Hello World!"
+            alert(x);
+        </script>
+    ```
+
+    
+
+* 한 줄에 여러 개 변수 선언
+
+  var name = "Hong", age = 24, job = "student";
+
+
+
+## 06. 자료형
+
+* 변수가 가질 수 있는 값의 종류
+
+  * 수치형(number) : 정수나 실수
+
+    * 
+
+  * 문자열(string) : 문자가 연결된 것 (텍스트)
+
+    * 문자형 길이는 length 속성으로 알 수 있다.
+
+      var s = "abc"; // s에 문자열 "abc"를 저장
+
+      alert(s.length); // 3이 출력됨
+
+    * `+` 연산자를 이용해 문자열을 합칠 수 있다.
+
+    * 그 외 메서드 종류
+
+      * charAt() : 첫 번째 문자
+
+      * replace("old", "new") : old를 new로 변경
+
+      * toUpperCase() : 대문자로 변경
+
+      * 예시
+
+            <script>
+                var s = "Hello World!";
+                var t = "How are you today?";
+                document.write(s + "<br>"); 
+                // alert는 알림창, document.write()는 홈페이지에 글로 나타냄
+                document.write(t + "<br>");
+                document.write(s.toUpperCase());
+            </script>
+
+  * 불형(boolean) : True 또는 False 값
+
+  * 객체형(object) : 객체를 나타내는 타입, 호출 불가능
+
+    * 기본 자료형(num, str, bool)을 제외하면 모두 객체형
+
+    * 객체는 사물의 속성과 동작으 묶어서 표현하는 기법
+
+    * 예로 자동차는 메이커, 모델, 색상, 마력과 같은 속성과 함께 출발하기, 정지하기 등의 모션이 존재
+
+      ```html
+      var myCar = { model : "benz", color : "white", hp : 100 };
+      document.write(myCar.model + "<br>");
+      document.write(myCar.color + "<br>");
+      document.write(myCar.hp + "<br>");
+      ```
+
+  * 객체형(function) : 객체를 나타내는 타입, 호출 가능
+
+  * Null(object)
+
+  * undefined : 값이 정해지지 않은 타입
+
+    * 변수는 선언되었지만, 값을 지정하지 않으면 나타나는 유형
+
+  
+
+  * 특정 값이 변수에 저장되는 순간 자료형은 내부적으로 결정된다.
+
+  * 현재 변수가 저장하고 있는 종류는 typeof라는 연산자를 변수에 적용하면 알 수 있다.
+
+    함수는 실제로 객체형이나 호출이 가능한 객체 타입을 function으로 출력한다.
+
+
+
+## 07. 연산자
+
+* 산술 연산자
+  * `+` : 덧셈
+  * `-` : 뺄셈
+  * `*` : 곱셈
+  * `/` : 나눗셈
+  * `%` : 나머지
+  * `++` : 증가
+    * `++`x 또는 x`++` : x의 값 3일 때 3에서 4가 된다.
+      * `++`x : x의 값을 먼저 증가시키고 증가된 x 값을 수식에 사용
+      * x`++` : x의 이전 값을 수식에 사용 후 x 값을 증가
+  * `--` : 감소
+    * `--`x 또는 x`--` : x의 값 3일 때 3에서 2가 된다.
+      * `--`x : x의 값을 먼저 감소시키고 증가된 x 값을 수식에 사용
+      * x`--` : x의 이전 값을 수식에 사용 후 x 값을 감소
+
+
+
+* 대입 연산자
+  * 대입 연산자는 변수에 값을 할당한다. (z = x+y)
+  * 복합 대입 연산자란 += 처럼 대입 연산자와 산술 연산자를 합친 것이다.
+    * x += y 는 x = x + y 와 같다. (-, *, /, 5도 동일)
+
+
+
+* 문자열에서 + 연산자
+  * 결합하는 용도로 사용
+  * 만약 문자열 + 숫자라면, 숫자가 문자열로 변환되어 합쳐진다.
+
+
+
+* 비교 연산자 (조건문에서 많이 사용된다.)
+
+  * 논리 문장에서 값들을 비교하는 용도로 사용
+
+  * 종류
+
+    * == : 값이 같으면 참
+    * != : 값이 다르면 참
+    * `>` : 크면 참
+    * `<` : 작으면 참
+    * `>=` : 크거나 같으면 참
+    * `<=` : 작거나 같으면 참
+    * === : 값과 타입이 모두 같으면 참
+    * !== : 값이나 타입이 다르면 참
+
+  * 예시
+
+    if (age > 18)
+
+    ​	msg = "입장 가능"
+
+
+
+* 논리 연산자
+  * 여러 개의 조건을 조합해서 참인지 거짓인지 따질 때 사용
+    * && : and 연산
+    * || : or 연산
+    * ! : Not 연산
+
+
+
+* 조건 연산자
+
+  * 유일하게 3개의 피연산자를 가지는 삼항 연산자
+
+    max_value = (x>y) ? x: y;
+
+    * x>y 가 참이면 x가 수식의 값
+    * 거짓이면 y가 수식의 값
+
+    group = (age<30) ? "청년부" : "장년부";
+
+    * age가 30보다 작으면(참) 청년부
+    * age가 30보다 크면(거짓) 장년부
+
+
+
+* 연산자 우선순위
+
+![자바의 연산자 및 연산자 우선순위](https://t1.daumcdn.net/cfile/tistory/997A014D5A90B9B00D)
+
+
+
+## 08. 숫자와 문자열 사이의 변환
+
+* parseInt() : 문자열 -> 숫자
+* String() : 숫자 -> 문자열
+* prompt() : 사용자에게 어떤 사항을 알려주고 답변을 입력할 수 있는 윈도우를 화면에 띄운다. (입력한 사항은 모두 문자열로 저장된다.)
+
+
+
+* 예제 1
+
+```html
+    <script>
+        var x, y;
+        var input;
+
+        input = prompt("정수를 입력하시오", "정수");
+        x = parseInt(input); // 문자열 input을 숫자형으로 변환
+        
+        input = prompt("정수를 입력하시오", "정수");
+        y = parseInt(input);
+
+        document.write(x+y + "<br>");
+    </script>
+```
+
+
+
+* 예제 2
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculator</title>
+    <script>
+        function calc() {
+            // JS에서 HTML 요소에 접근하기 위해 document.getElementById(id) 메서드를 사용
+            // 여기에서 값을 가져올 수 있거나, 값을 대입할 수 있다.
+            var x = document.getElementById("x").value; // id가 "x"인 요소를 가져온다.
+            var y = document.getElementById("y").value; // id가 "y"인 요소를 가져온다.
+            var sum;
+            sum = parseInt(x) + parseInt(y); // x와 y를 숫자형으로 바꾼 후 변환해서 합친다.
+            document.getElementById("sum").value = sum; // id가 "sum"인 요소에 변수 sum의 값을 대입한다.
+        }
+    </script>
+</head>
+<body>
+    <h3>덧셈 계산기</h3>
+
+    <form name="myform" action="..." method="post">
+        첫 번째 정수 : <input id="x"> <br>
+        두 번째 정수 : <input id="y"> <br>
+        합계 : <input id="sum"> <br>
+        <input type="button" value="계산" onclick="calc();">
+        // 버튼 클릭 시 calc() 라는 이름의 함수 호출
+    </form>
+</body>
+</html>
+```
+
+
+
+
+
+* HTML 요소에 접근하기
+
+document.getElementById(id) 메서드 사용
+
+```html
+<!DOCTYPE html>
+<html>
+<body>
+    <h1 id="test">This is a heading.</h1>
+    <script>
+        function func() {
+            e = document.getElementById("test"); // id가 "test"인 요소를 가져옴
+            e.style.color = "red"; // id가 "test"인 요소 style 지정
+        }
+    </script>
+    <button type="button" onclick = "func();">클릭하세요!</button>
+</body>
+</html>
+```
+
+
+
+
 
