@@ -524,3 +524,136 @@ document.getElementById(id) 메서드 사용
 
 
 
+## 09. 조건문
+
+* 조건문 종류
+
+  * if문 : 조건이 참일 때만 어떤 코드를 실행하고 싶을 때 사용
+
+    if (조건식)
+
+    ​	문장;
+
+  * if...else문 : 조건이 참이면 어떤 코드를 실행하고 조건이 거짓이면 다른 코드를 실행하고 싶을 때 사용
+
+    if (조건식)
+
+    ​	문장1;
+
+    else 
+
+    ​	문장2;
+
+  * switch문 : 많은 코드 중에서 하나를 선택해서 실행하고 싶은 경우 사용
+
+
+
+* 연속적인 if문
+  * else if를 사용 (python으로 치면 elif)
+
+```html
+    <script>
+        var msg = "";
+        var time = new Date().getHours(); // 웹 브라우저로부터 현재 시간을 얻는다.
+        if (time < 12) {
+            msg = "Good morning";
+        }
+        else if (time < 18) {
+            msg = "Good Afternoon";
+        }
+        else {
+            msg = "Good Night";
+        }
+        alert(msg);
+    </script>
+```
+
+
+
+* switch문
+
+  * 가능한 실행 경로가 여러 개인 경우 switch문 사용
+
+    ```html
+    <script>
+    
+    switch(제어식)
+    
+    {
+    	// 제어식 값이 c1이면 실행
+    ​	case c1:
+    
+    ​					문장1;
+    
+    ​					break;
+    	// 제어식 값이 c2이면 실행
+    ​	case c2:
+    
+    ​					문장2;
+    
+    ​					break;
+    	// 일치하는 값이 없으면 시행
+    ​	default:
+    
+    ​					문장d;
+    
+    ​					break;
+    
+    }
+    </script>
+    ```
+
+    
+
+    
+
+## 10. 반복문
+
+* while문
+
+  * 주어진 조건이 만족되는 동안, 문장을 반복 실행하는 제어 구조
+
+  * 형식
+
+    while(조건식)
+
+    ​	문장;
+
+    * 조건식이 참이면, 문장을 실행한다.
+
+  * ```html
+    var i = 0;
+    
+    while (i < 10)
+    {
+                  document.write(i+"<br>")
+                  i++;
+                  }
+    ```
+
+* for문
+
+  * 정해진 횟수만큼 반복
+
+  * 초기식, 조건식, 증감식으로 구성 (세미콜론으로 분리됨)
+
+  * 형식
+
+    for (초기식; 조건식; 증감식;)
+
+    ​	반복문장;
+
+    * 초기식을 실행한 후 조건식의 값이 참인 동안, 반복문장 반복
+    * 반복 끝날 때마다 증감식 실행
+
+  * 예시
+
+    ```javascript
+    for (i=0; i<10; i++) // 초기식; 조건식; 증감식;
+    {
+                    document.write(i+"<br>"); // 반복되는 문장
+    }
+    ```
+
+    
+
