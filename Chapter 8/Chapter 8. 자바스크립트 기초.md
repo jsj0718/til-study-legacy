@@ -646,7 +646,7 @@ document.getElementById(id) 메서드 사용
     * 초기식을 실행한 후 조건식의 값이 참인 동안, 반복문장 반복
     * 반복 끝날 때마다 증감식 실행
 
-  * 예시
+  * 예시 1
 
     ```javascript
     for (i=0; i<10; i++) // 초기식; 조건식; 증감식;
@@ -655,5 +655,125 @@ document.getElementById(id) 메서드 사용
     }
     ```
 
+  * 예시 2
+  
+    ```javascript
+    // 초기식은 콤마를 통해 여러 문장을 집어 넣을 수 있다.
+    for (var i=0, len = fruits.length; i < len; i++) {
+    	document.write(fruit[i] + "<br>")                                           
+                                               }
+    ```
+  
+  * 예시 3
+  
+    ```javascript
+    // 초기식 생략도 가능하다.
+    var i=2, len=fruit.length;
+    for (; i < len; i++) {
+        document.write(fruit[i] + "<br>")
+    }
+    ```
+  
+  * 예제 1 (h1부터 h6까지 반복)
+  
+    ```javascript
+    // h1부터 h6까지 반복시킬 수도 있다.
+    var i = 1;
+    for (i = 1; i < 7; i++) {
+        document.write("<h" + i + ">header" + i +"</h" + i + ">")
+    }
+    ```
+  
+  * 예제 2 (온도 변환기)
+  
+    ```javascript
+        <table border="3">
+            <tr>
+                <td>섭씨온도</td>
+                <td>화씨온도</td>
+            </tr>
+            <script>
+                for (celsius=0; celsius < 11; celsius++) {
+                    document.write("<tr><td>" + celsius + "</td><td>" + ((celsius * 1.8) + 32) + "</td></tr>");
+                }
+            </script>
+        </table>
+    ```
+  
     
-
+  
+  * 예제 3 (중첩 반복문, 구구단)
+  
+    ```javascript
+    document.write("<h1> 구구단표 </h1>")
+    document.write("<table border='2' width=50%>")
+    // 루프 중첩 시 서로 다른 변수를 사용해야 한다.
+    for (var i = 1; i <= 9; i++) {
+        document.write("<tr><td>" + i + "</td>");
+        for (var j = 2; j <= 9; j++) {
+            document.write("<td>" + i * j + "</td>")
+        }
+        document.write("</tr>")
+    }
+    ```
+  
+  * 예제 4 (do/while 루프)
+  
+    ```javascript
+    // while문과 유사하나 조건을 루프 끝에서 검사한다는 점이 다르다. (문장을 한 번 실행하고 검사한다.)    
+    	<script>
+            var i = 0;
+            do {
+                document.write("카운터 : " + i + "<br>");
+                i++;
+            } while(i < 10); // while() 끝에 ;를 꼭 붙여야 한다.
+        </script>
+    ```
+  
+  * 예제 5 (for/in 루프)
+  
+    ```javascript
+    // for/in 루프는 객체 안 속성들에 대해 어떤 처리를 반복할 수 있는 구조
+    for (변수 in 객체) // 변수에 객체 속성이 하나씩 대입되면서 반복된다.
+        {
+            문장;
+        }
+    
+    // 예제
+    <script>
+        var myCar = {make : "BMW", model : "X3", year : "2013"};
+    	var txt = "";
+    	for (var x in myCar) {
+        	txt += myCar[x] + " "; // []가 인덱스같은 역할인지 확인하기
+    	}
+    	document.write(txt);
+    </script>
+    ```
+  
+  * 예제 6 (break 문장)
+  
+    ```javascript
+    // break는 반복문을 빠져나오기 위해 사용
+    for (var i = 0; i < 10; i++) {
+        // 3에서 멈춤
+        if (i == 3) {
+            break;
+        }
+        document.write(i + "<br>")
+    }
+    ```
+  
+  * 예제 7 (continue 문장)
+  
+    ```javascript
+    // 현재 실행하고 있는 반복 과정의 나머지를 생략하고 다음 반복을 시작하게 만드는 문장
+    for (var i = 0; i < 10; i++) {
+        // 3 생략
+        if (i == 3) {
+            continue;
+        }
+        document.write(i + "<br>")
+    }
+    ```
+  
+    
