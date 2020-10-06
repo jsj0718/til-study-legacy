@@ -777,3 +777,301 @@ document.getElementById(id) 메서드 사용
     ```
   
     
+
+
+
+## 11. 배열
+
+* 배열이 필요한 이유
+
+  * 서로 관련된 데이터를 차례대로 접근해서 처리하고 싶은 경우에 필요 (무한 번의 변수 선언은 비효율적)
+  * 하나의 이름을 공유하고 번호만 다를 뿐이라면 효율적
+  * 많은 값을 한꺼번에 저장할 수 있는 저장 장소가 필요할 때 사용되는 자료형
+
+* 배열 생성 방법
+
+  1. 리터럴로 배열 생성
+
+     * 구체적인 값으로 배열 생성
+
+       ```javascript
+       var fruits = ["apple", "banana", "peach"];
+       ```
+
+     * 객체는 {}로 선언, 배열은 []로 선언
+
+     * 배열에 저장된 값은 인덱스로 접근 가능 (0부터 시작)
+
+  
+
+  2. Array 객체로 배열 생성
+
+     ```javascript
+     // 빈 배열 생성
+     var fruits = new Array() ;
+     
+     // 배열 값 저장 시 인덱스 사용
+     fruits[0] = "apple"
+     
+     // 다음과 같은 방법도 가능
+     var fruits = new Array("Apple", "Banana", "Orange")
+     ```
+
+     
+
+* 자바스크립트 배열 특징
+
+  * 하나의 배열에 여러 가지 종류의 객체를 혼합해서 저장 가능
+
+    ```javascript
+    var comp = new Array();
+    comp[0] = "Apple"; // 문자열
+    comp[1] = new Date(); // 객체
+    comp[2] = 3; // 정수
+    ```
+
+
+
+* 객체 Array 속성과 메서드
+  * length (배열의 크기, 배열 요소를 반복하면서 처리할 때 사용)
+
+
+
+* 연관 배열
+
+  * 자바스크립트의 배열은 key를 이용해 값을 저장 후 다시 추출할 수 있다.
+
+  * 키는 단순한 문자열 (인덱스 대신 키를 사용함)
+
+    ```javascript
+    <script>
+        // index 대신 key값을 이용해 값을 저장 (Python도 동일)
+        var fruits = new Array();
+        fruits['a'] = "사과";
+        fruits['b'] = "바나나";
+        fruits['c'] = "오렌지";
+    
+        document.write(fruits['a'] + "<br>");
+        document.write(fruits['b'] + "<br>");
+        document.write(fruits['c'] + "<br>");
+    </script>
+    ```
+
+  * HTML 요소에서 name 속성을 통해 키처럼 동작하는 예제
+
+    ```javascript
+    <form name="myForm">
+        필드1 <input type="text" name="a0"> <br>
+        필드2 <input type="text" name="a1"> <br>
+        필드3 <input type="text" name="a2"> <br>
+        <input type="button" value="초기화" onclick="init();">
+    </form>
+    
+    <script>
+        function init() {
+            for (var i=0; i<3; i++) {
+                // form name의 인덱스를 활용해서 form 내부 요소의 name을 불러올 수 있다.
+                document.myForm["a" + i].value = i;  
+            }
+        }
+    </script>
+    ```
+
+    
+
+## 12. 함수
+
+* 함수는 입력 받아서 특정한 작업을 수행한 후 결과를 반환하는 블랙  박스
+* 함수 안의 코드는 외부에서 호출 시에만 실행
+
+```javascript
+// 함수 정의
+
+function 함수이름 ()
+{
+    함수 몸체
+}
+
+/* 설명
+1. function : 함수의 시작
+2. 함수이름 : 낙타체로 표기
+3. () : 함수임을 의미
+4. 함수 몸체 : 호출되면 실행되는 코드
+```
+
+
+
+```javascript
+// 예시
+<script>
+    function showDialog() {
+    alert("안녕하세요!")
+}
+</script>
+
+<input type="button" onclick="showDialog();" value="대화상자오픈">
+```
+
+
+
+* 인수와 매개 변수
+
+  * 인수(인자) : 함수 호출 시 어떤 값을 함수로 전달하는 역할 (함수 내부에서 사용, 콤마로 구분)
+  * 매개 변수 :  함수 선언 시 인수를 받을 변수 선언이 필요한데, 이를 매개 변수라고 함.
+
+  ```javascript
+  // para1, para2는 매개 변수
+  function showDialog(para1, para2) {
+      
+  }
+  
+  
+  // arg1, arg2는 인수(인자)
+  showDialog(arg1, arg2);
+  
+  
+  // 예시
+  <script>
+      function showDialog(name, position) {
+      	alert(name + " " + position + "님을 환영합니다.")
+  	}
+  </script>
+  
+  <form>
+  	<input type="button" value="눌러보세요!" onclick="showDialog('정세진', '사원')">
+  </form>
+  ```
+
+  
+
+* 무명 함수
+
+  * 함수에 이름을 주지 앟고 만들어서 한 번만 사용하는 경우 이것을 무명 함수라고 부름
+
+  ```javascript
+  // 예시 1
+  function showDialog() {
+      alert("안녕하세요!");
+  }
+  
+  // 예시 2
+  var greeting = function() {
+      alert("안녕하세요!");
+  };
+  greeting();
+  
+  // 예시 1과 예시 2는 동일한 결과를 나타낸다. (greeting이라는 변수에 함수가 들어간 형태인 것만 다름)
+  ```
+
+  * 자바스크립트에서 함수는 객체처럼 취급
+  * 무명 함수는 함수를 만들어서 한 번만 사용하는 경우에 유용 (이벤트 처리 함수)
+
+
+
+* 함수 반환값
+
+  * 함수 내부에서 return 문장을 사용하면 값을 반환할 수 있다.
+  * return 문장을 사용 시 함수가 실행을 중단하고 지정된 값을 호출한 곳으로 반환 후 함수를 종료한다.
+
+  ```javascript
+  function sub() {
+      var x; 
+      x = 1;
+      return x;
+  }
+  
+  var value = sub(); // value는 x
+  ```
+
+  * 단순히 함수를 종료하고 싶은 경우에도 사용
+
+  ```javascript
+  function divide(a, b) {
+      // b가 0일 때 나눗셈을 못하므로 함수 종료
+      if (b==0) {
+          return;
+      }
+      // 그 이외에는 나눗셈 진행
+      return a / b;
+  }
+  ```
+
+  
+
+* 지역 변수(local)
+
+  * 함수 안에서 선언된 변수를 뜻함 (함수 안에서만 사용 가능)
+  * 다른 함수에서 같은 이름으로 사용 가능
+  * 함수가 종료되면 자동적으로 소멸
+
+  ```javascript
+  function add(a,b) {
+      var sum = 0; // sum은 지역 변수로 함수 안에서만 사용 가능
+      
+      sum = a + b;
+      return sum;
+  }
+  ```
+
+  
+
+
+
+* 전역 변수(global)
+
+  * 함수 외부에서 선언된 변수를 뜻함
+  * 웹 페이지 상이 모든 스크립트와 모든 함수는 전역 변수를 사용할 수 있음
+
+  ```javascript
+  var sum = 0; // sum은 전역 변수로 함수 이외에서도 사용 가능
+  
+  function add(a,b) {
+      sum = a + b;
+      return sum;
+  }
+  ```
+
+  * 사용자가 웹페이지를 닫으면 소멸
+  * 선언되지 않은 변수에 값을 대입하면 그 변수는 자동적으로 전역 변수가 된다.
+    * 즉 var를 함수 내에서 사용해서 변수를 선언하면 지역 변수, 그 외에는 전역 변수이다.
+    * 함수 선언 없이 name = "Jeong"이라고 하면 이는 자동적으로 전역 변수가 된다.
+
+
+
+## 13. 자바스크립트 입출력
+
+* 자바스크립트는 웹 브라우저 안에서 실행
+* 입력과 출력은 모두 HTML 문서
+
+
+
+1. HTML 문서에 출력하는 방법
+
+   * alert() 함수
+
+     * 사용자에게 경고하는 윈도우를 화면에 띄우는 함수
+
+   * confirm() 함수
+
+     * 사용자에게 어떤 사항을 알려주고 **확인**이나 **취소**를 요구하는 윈도우를 화면에 띄우는 함수
+
+     ```javascript
+     var user = confirm("confirm()은 사용자 답변을 전달합니다.")
+     ```
+
+   * prompt() 함수
+
+     * 사용자에게 어떤 사항을 알려주고 사용자가 답변을 입력할 수 있는 윈도우를 화면에 띄우는 함수
+     * 입력한 내용은 모두 문자열로 변환
+
+     ```javascript
+     var age = prompt("나이 입력", "만나이로 입력")
+     ```
+
+   * HTML 문서에 쓰기
+
+     * 자바스크립트에서 HTML 문서에 어떤 요소를 추가하려면 document.write() 사용
+
+     * 주의할 점 : 페이지가 적재된 후 document.write()를 호출하면 전체 HTML 문서가 다시 씌어진다.
+
+       즉, document.write()는 <body>요소 안에서 **다른 요소들과 같이 실행되는 경우**에 사용하는 것이 좋다.
