@@ -384,5 +384,68 @@ write와 동일한 기능을 하며 단 <pre>태그내에서 사용될 경우 �
 >
 > 
 >
+> * 카운트다운 타이머 만들기 (지금부터 특정 날짜까지 남은 날짜를 표시하는 코드)
+>
+> ```javascript
+> <div id="remaining"></div>
+> 	<script>
+>     	function datesUntilnewYear() {
+>     		var now = new Date();
+>     		// 내년 1월 1일 변수 선언 (getFullYear() : 4개의 숫자로 된 연도 반환)
+>     		var newYear = new Date("January 1, " + (now.getFullYear() + 1));
+>     		var diff = newYear - now; // diff는 밀리초 단위
 > 
-
+>             var milliseconds = Math.floor(diff % 1000);
+>             diff /= 1000;
+>             var seconds = Math.floor(diff % 60);
+>             diff /= 60;
+>             var minites = Math.floor(diff % 60);
+>             diff /= 60;
+>             var hours = Math.floor(diff % 24);
+>             diff /= 24;
+>             var days = Math.floor(diff);
+> 
+>             var outStr = "내년도 신정까지 " + days + "일, " + hours + "시간, " + minites + "분, " + seconds + "초, 남았습니다."
+>             // HTML 요소에 접근해서 시간을 계속 변경하여 출력하려면 innerHTML을 사용해야 한다.
+>             document.getElementById("remaining").innerHTML = outStr;
+>     		// setTimeout : 1초(1000ms)가 지나면 다시 함수를 호출한다.
+>     		setTimeout("datesUntilnewYear()", 1000); // 1
+>             }
+> 		datesUntilnewYear();
+> 	</script>
+> 
+> ```
+>
+> * JS 입출력 메서드 종류
+>
+> ```javascript
+> ● document.write( )  
+> : ()안에 것을 화면에 출력하라는 메서드
+> ● window.alert()     
+> : 경고창을 띄워 ()안의 것을 출력하라는 메서드
+> ● innerHTML=" "       
+> : 예를 가지고 이해하는 것이 빠르다. 
+> 예를 들어 HTML로 [홍길동]이라는 콘텐츠를 화면에 출력하였다.
+> 이 HTML 요소에 접근하여 [홍길동]을 [이순신]으로 바꿔 출력하게 만들려면 이 속성을 사용해야 한다. 그리고 HTML 요소에 접근하려면 document.getElementById 메서드를 함께 사용한다.
+> ```
+>
+>  
+>
+> * 시계 만들기
+>
+> ```javascript
+> <div id="clock"></div>
+> 
+> <script>
+>     function setClock() {
+>     var now = new Date();
+>     var s = now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
+>     
+>     document.getElementById("clock").innerHTML = s;
+>     setTimeout("setClock()", 1000); // 1000ms(1초)는 주기
+> }
+> 	setClock();
+> </script>
+> ```
+>
+> 
