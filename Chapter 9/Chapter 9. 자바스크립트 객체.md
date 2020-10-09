@@ -448,4 +448,296 @@ write와 동일한 기능을 하며 단 <pre>태그내에서 사용될 경우 �
 > </script>
 > ```
 >
+
+
+
+> * Number 객체
+>   * 수치형 값을 감싸서 객체로 만들어주는 랩퍼 객체
+>     * 랩퍼 객체 : 수치값을 직접 사용할 수는 없고, 반드시 객체가 필요한 경우 사용
+>
+> ```javascript
+> // 숫자 7을 가지고 있는 Number 객체를 생성 
+> var num = new Number(7);
 > 
+> // 1.234를 감싸는 랩퍼 객체 생성
+> 1.234.toString();
+> ```
+>
+>   
+>
+> * Number 객체 속성 종류
+>   * MAX VALUE : 표현할 수 있는 가장 큰 값
+>   * MIN VALUE : 표현할 수 있는 가장 작은 값
+>   * NaN : "Not a Number" 의 약자
+>
+>  
+>
+> * Number 객체의 메서드 종류
+>
+>   * toExponential([digits]) : 지수형으로 반환, 인수는 소수점 이하의 숫자 개수
+>
+>   ```javascript
+>   var num = 1232.34567;
+>   document.writeln(num.toExponential() + "<br>"); // 1.23234567e+3 (1232.34567)
+>   document.writeln(num.toExponential(1) + "<br>"); // 1.2e+3 (1200)
+>   ```
+>
+>   
+>
+>   * toFixed([digits]) : 고정소수점 방식으로 반환, 인수는 소수점 이하의 숫자 개수 (반올림)
+>
+>   ```javascript
+>   var num = 123.456789;
+>   document.writeln(num.toFixed() + "<br>") // 123
+>   document.writeln(num.toFixe(1) + "<br>") // 123.5
+>   ```
+>
+>   
+>
+>   * toPrecision([precision]) : 유효숫자 수를 지정
+>
+>   ```javascript
+>   var num = 123.456789;
+>   document.writeln(num.toPrecision(1) + "<br>") // 1e+2 (100)
+>   document.writeln(num.toPrecision(2) + "<br>") // 1.2e+2 (120)
+>   ```
+>
+>   
+>
+>   * toString([radix]) : 주어진 진법으로 숫자 반환
+>
+>   ```javascript
+>   var num = 255;
+>   document.writeln(num.toString() + "<br>"); // 255 (default는 10진법)
+>   document.writeln(num.toString(16) + "<br>"); // ff
+>   document.writeln(num.toString(8) + "<br>"); // 377
+>   document.writeln(num.toString(2) + "<br>"); // 11111111
+>   ```
+
+
+
+> * String 객체
+>
+>   * String 객체의 속성 종류
+>     * length : 문자열의 길이 (회원가입 시 아이디 6글자 이상을 요구할 때 length 이용)
+>
+>   ```javascript
+>   <!DOCTYPE html>
+>   <html>
+>   <head>
+>       <script>
+>           function idchecking() {
+>               var s = document.getElementById("idtext").value;
+>               if (s.length < 6) {
+>                   alert("아이디는 6글자 이상이여야 합니다.")
+>               }
+>           }
+>       </script>
+>   </head>
+>   <body>
+>       <div>
+>           아이디 : <input type="text" size="10" id="idtext"> <input type="button" value="검사" onclick="idchecking()">
+>       </div>
+>   </body>
+>   </html>
+>   ```
+>
+>   
+>
+> * 대소문자 변환
+>
+>   * toUpperCase() 와 toLowerCase()를 사용하면 문자열 글자를 대문자와 소문자로 변환 가능
+>   * 이는 비파괴 함수이기 때문에 원본은 그대로 유지되므로 새로운 변수에 저장하거나, 함수를 사용한채로 입력을 해놓아야 출력 시에 적용이 된다. (Python과 동일)
+>
+>   ```javascript
+>   <script>
+>       var s1 = "aBcDeF".toLocaleLowerCase(); // abcdef
+>   	var s2 = "AbCdEf".toLocaleUpperCase(); // ABCDEF
+>   
+>   	document.write(s1 + s2);
+>   </script>
+>   ```
+>
+>  
+>
+> * 문자열 붙이기
+>
+>   * concat() 메서드는 하나의 문자열을 다른 문자열과 합친다. (새로운 문자열 생성, +와 동일한 결과)
+>
+>   ```javascript
+>   <script>
+>       var s1 = "문자열1";
+>       var s2 = "문자열2";
+>       var s3 = s1.concat(s2);
+>   
+>       document.write(s3) // 문자열1문자열2
+>   </script>
+>   ```
+>
+>  
+>
+> * 문자열 검색
+>
+>   * indexOf() 메서드느 문자열 안에서 주어진 텍스트가 처음 등장하는 위치를 반환
+>
+>   ```javascript
+>   // 자바스크립트 인덱스가 시작점이 0, 1 중 무엇인지 확인
+>   <script>
+>       var s = "자바스크립트에 오신 것을 환영합니다.";
+>       var n = s.indexOf("환영");
+>       document.writeln(n + "<br>"); // 14 (책에서 답은 15)
+>   </script>
+>   ```
+>
+>  
+>
+> * 문자열 매칭
+>
+>   * match() 메서드는 문자열 안에서 일치하는 콘텐츠를 탐색하는데 사용
+>   * match()에서는 정규식 사용 가능 (?, *, ^ 등 사용 가능)
+>
+>   ```javascript
+>   <script>
+>       var str = "Like father, like son."
+>       // like를 탐색. i와 g는 옵션으로 insesitive(둔감한), globally를 의미.
+>       result = str.match(/like/ig);
+>       document.write(result + "<br>")
+>   </script>
+>   ```
+>
+>  
+>
+> * 문자열 대체
+>
+>   * replace()는 문자열 안에서 주어진 값을 다른 값으로 대체
+>   * replace()도 정규식 사용 가능
+>
+>   ```javascript
+>   <script>
+>   	var s = "Hong's number is 123-4567";
+>   	var result = s.replace("Hong's", "Kim's");
+>   	document.write(result + "<br>");
+>   </script>
+>   
+>   // 대소문자 관계없이 변경을 원할 때
+>   // var result = s.replace(/Hong's/i, "Kim's")
+>   // Hong's를 Kim's로 변경 (대소문자 모두 바껴도 가능)
+>   ```
+>
+>  
+>
+> * split(delimiter[, limit])
+>
+>   * split()은 첫 번째 인수를 분리자로 하여 문자열을 분리 후 각 항목을 가지고 있는 배열로 반환
+>
+>   ```javascript
+>   <script>
+>       var s = "One,Two,Three,Four,Five";
+>       var array = s.split(",");
+>       for (i=0; i < array.length; i++) {
+>           document.write((i+1) + "-" + array[i] + "<br>");
+>       }
+>   </script>
+>   ```
+>
+>  
+>
+> * HTML 랩퍼 메서드
+>
+>   * 문자열을 적절한 HTML 태그로 감싼 후 반환
+>
+>   ```javascript
+>   <script>
+>       var s = "This is a test";
+>       document.write("Big: " + s.big() + "<br>");
+>       document.write("Small : " + s.small() + "<br>");
+>       document.write("Bold : " + s.bold() + "<br>");
+>       document.write("Italic : " + s.italics() + "<br>");
+>       document.write("Fixed : " + s.fixed() + "<br>");
+>       document.write("Strike : " + s.strike() + "<br>");
+>       document.write("Fontcolor : " + s.fontcolor("green") + "<br>");
+>       document.write("Fontsize : " + s.fontsize(6) + "<br>");
+>       document.write("Subscript : " + s.sub() + "<br>");
+>       document.write("Superscript : " + s.sup() + "<br>");
+>       document.write("Link : " + s.link("http://www.google.co.kr") + "<br>"); 
+>   	// target=_blank로 설정됨
+>   </script>
+>   ```
+>
+>   <img src="C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20201009223819364.png" alt="image-20201009223819364" style="zoom:67%;" />
+>
+>    
+>
+> * 문자열 리터럴과 문자열 객체
+>
+>   * 문자열 종류 2가지 (리터럴과 객체)
+>     * 리터럴 : ""(큰따옴표)로 생성
+>     * 객체 : new 키워드로 생성
+>
+>   ```javascript
+>   <script>
+>       var sLiteral = "문자열 리터럴";
+>       sObject = new String("문자열 객체");
+>   
+>       document.writeln(typeof (sLiteral) + "<br>"); // string
+>       document.writeln(typeof (sObject) + "<br>"); // object
+>   	
+>       // 문자열 리터럴도 String 객체의 모든 속성과 메서드 사용 가능
+>       // 자바스크립트가 임시적으로 문자열 상수를 문자열 객체로 형변환을 하기 때문
+>       sLiteral += "123"
+>       document.writeln(sLiteral + "<br>");
+>   </script>
+>   ```
+>
+>   * String 객체가 함수로 전달될 때 값(value)만 전달 (함수 안에서 전달받은 문자열을 변경해도 원본은 유지)
+>
+>   ```javascript
+>   // 원본 유지 테스트
+>   <script>
+>       var sLiteral = "문자열 리터럴";
+>       var sObject = new String("문자열 객체");
+>   
+>       function change(strlit, strobj) {
+>           strlit = "Hello World";
+>           strobj = "Hello World";
+>       }
+>   	
+>   	// 함수 안에서 전달받은 문자열 변경
+>   	change(sLiteral, sObject);
+>   	// 원본 유지
+>       document.writeln(sLiteral + "<br>"); // "문자열 리터럴"
+>       document.writeln(sObject + "<br>"); // "문자열 객체"
+>   </script>
+>   ```
+>
+>  
+>
+> * Math 객체
+>
+>   * 수학적 작업을 위한 객체 (생성자가 아닌 객체, new 키워드 사용 필요 X)
+>   * 상수 종류
+>     * E : 오일러 상수 (약 2.718)
+>     * LN2 : 자연 로그 (밑수: 2) (약 0.693)
+>     * LN1 : 자연 로그 (밑수: 10) (약 2.302)
+>     * Pi : 파이 상수 (약 3.14)
+>     * SQRT1_2 : 1/2의 제곱근 (약 0.707)
+>     * SQRT2 : 2의 제곱근 (약 1.414)
+>   * 메서드 종류
+>     * abs(x) : 절대값
+>     * acos(x), asin(x), atan(x) : 아크 삼각함수
+>     * ceil(x), floor(x) : 실수를 정수로 올림, 내림 함수
+>     * cos(x), sin(x), tan(x) : 삼각함수
+>     * exp(x) : 지수함수
+>     * log(x) : 로그함수
+>     * max(a,b,c,d ...) : 최대값
+>     * mint(a,b,c,d ...) : 최소값
+>     * pow(x,y) : 지수 함수 ( x^y)
+>     * random() : 0과 1 사이의 난수값 반환
+>     * round(x) : 반올림
+>     * sqrt(x) : 제곱근
+>
+>   ```javascript
+>   
+>   ```
+>
+>   
