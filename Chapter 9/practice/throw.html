@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        var solution = 53;
+        function test () {
+            try {
+                var x = document.getElementById("number").value;
+                if (x < 1 || x > 100) throw "범위를 벗어남";
+                if (x < solution) throw "답보다 작음";
+                if (x > solution) throw "답보다 큼";
+                if (x == solution) throw "성공";
+                if (x == "") throw "입력 없음";
+                if (isNaN(x)) throw "숫자가 아님";
+            }
+            catch (error) {
+                var y = document.getElementById("msg");
+                y.innerHTML = "힌트 : " + error;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Number Guess</h1>
+    <p>1부터 100 사이의 숫자를 입력하시오.</p>
+    <input type="text" id="number"> <input type="button" value="숫자 추측" onclick="test()">
+    <p id="msg"></p>
+</body>
+</html>

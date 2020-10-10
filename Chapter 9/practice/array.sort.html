@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var a = [10, 7, 23, 99, 169, 19, 11, 1];
+        a.sort()
+        document.write(a, "<br>"); // 1, 10, 11, 169, 19, 23, 7, 99
+
+        a.sort(function (a,b) {return a-b}) // 수치갑으로 정렬하기 위한 정렬 기준 함수를 인수로 제공
+        document.write(a, "<br>") // 1, 7, 10, 11, 19, 23, 99, 169
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

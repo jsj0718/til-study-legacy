@@ -737,7 +737,515 @@ write와 동일한 기능을 하며 단 <pre>태그내에서 사용될 경우 �
 >     * sqrt(x) : 제곱근
 >
 >   ```javascript
->   
+>   <!DOCTYPE html>
+>   <html>
+>       <head>
+>         <script>
+>             function calc(type) {
+>                 var x = Number(document.calculator.number.value); // x는 document의 calculator(form)의 number(입력) 값이다.
+>                 var y;
+>                 if (type == 1) {
+>                     y = Math.sin((x * Math.PI) / 180.0)
+>                 }
+>                 else if (type == 2) {
+>                     y = Math.log(x);
+>                 }
+>                 else if (type == 3) {
+>                     y = Math.sqrt(x);
+>                 }
+>                 else if (type == 4) {
+>                     y = Math.abs(x);
+>                 }
+>                 document.calculator.result.value = y; // document의 calculator(form)의 result(계산 결과)의 값은 y이다.
+>             }
+>         </script>
+>     </head>
+>     <body>
+>         <form name="calculator">
+>             입력 : <input type="text" id="number"> <br>
+>             계산 결과 : <input type="text" id="result"> <br>
+>             <input type="button" value="SIN" onclick="calc(1)">
+>             <input type="button" value="LOG" onclick="calc(2)">
+>             <input type="button" value="SQRT" onclick="calc(3)">
+>             <input type="button" value="ABS" onclick="calc(4)">
+>         </form>
+>     </body>
+>   </html>
 >   ```
 >
 >   
+
+## 05. Array 객체
+
+* JS에서 Array 특징 3가지
+
+  1. 배열 크기가 자동으로 조절된다.
+
+     ```javascript
+     var myArray = new Array();
+     myArray[0] = "Apple";
+     myArray[99] = "banana";  // 배열의 99번째 요소에 데이터를 추가하면 myArray 배열의 크기가 100으로 변한다. (0과 99의 사이는 빈 값)
+     ```
+
+     
+
+  2. 여러 가지 자료형을 혼합해서 저장 가능하다.
+
+     ```javascript
+     var myArray = new Array();
+     myArray[0] = "Apple"; // 문자열 저장
+     myArray[1] = 3.14; // 실수 저장
+     myArray[2] = new Date(); // 객체 저장
+     ```
+
+     
+
+  3. 배열 크기보다 큰 인덱스 값으로 배열 요소에 접근하면 오류가 발생하지 않고, undefined 값이 반환된다.
+
+``` javascript
+// 배열 생성 방법 3가지
+<script>
+    function printArray(myArray) {
+        document.write("[")
+        for (var i=0; i < myArray.length; i++) {
+            document.write(myArray[i] + " ")
+        }
+        document.write("]" + "<br>")
+    }
+
+    var myArray1 = new Array();
+    myArray1[0] = "apple";
+    myArray1[1] = "banana";
+    myArray1[2] = "orange";
+
+    var myArray2 = new Array("apple", "banana", "orange");
+
+    var myArray3 = ["apple", "banana", "orange"];
+
+    printArray(myArray1);
+    printArray(myArray2);
+    printArray(myArray3);
+</script>
+```
+
+
+
+* Array 속성과 메서드
+
+  * 속성
+
+    * length
+
+  * 메서드
+
+    * concat(value1[value2[value3...]])
+
+      * 전달된 인수를 배열 끝에 추가
+
+      * ```javascript
+        <script>
+            var x = [1, 2, 3]; 
+            var y = [4, 5, 6];
+            var z = x.concat(y);
+            document.write(z) // 1,2,3,4,5,6
+        </script>
+        ```
+
+    * indexOf(searchStr[, startIndex])
+
+      * 요소의 값을 가지고 요소의 인덱스를 찾을 때 사용
+
+      * ```javascript
+        <script>
+            var fruits = ["apple", "banana", "orange"];
+            document.write(fruits.indexOf("banana")); // 1
+        </script>
+        ```
+
+    * push(value), pop()
+
+      * push()는 스택에 데이터를 삽입하는 메서드
+
+      * pop()은 스택에서 데이터를 꺼내는 메서드
+
+      * 스택은 선입후출 구조
+
+      * ```javascript
+        <script>
+            var a = [1,2,3,4,5,6]
+            a.pop()
+            document.write(a, "<br>") // 1,2,3,4,5
+            a.push(7)
+            document.write(a, "<br>") // 1,2,3,4,5,7
+        </script>
+        ```
+
+    * shift(), unshift()
+
+      * shift()는 배열의 첫 번째 요소를 반환하고 첫 번째 요소를 배열에서 제거
+
+      * unshift()는 새로운 아이템을 배열 맨 앞에 추가
+
+      * 이를 통해 큐를 구현할 수 있음 (선입선출)
+
+      * ```javascript
+        <script>
+            var a = [1,2,3,4,5,6,7,8,9,10]
+        
+            document.write(a.shift(), "<br>") // 1
+            document.write(a, "<br>") // 2,3,4,5,6,7,8,9,10
+        
+            a.unshift(100)
+            document.write(a, "<br>") // 100,2,3,4,5,6,7,8,9,10
+        </script>
+        ```
+
+    * sort()
+
+      * 배열을 알파벳 순으로 정렬(default)
+
+      * 사용자 기준으로 지정하려면 sort()에 정렬 기준 함수를 제공해야 함
+
+      * 수치값으로 정렬하려면 function(a,b) { return a-b } 라는 정렬 기준 함수를 인수로 제공해야 함
+
+      * ```javascript
+        <script>
+            var a = [10, 7, 23, 99, 169, 19, 11, 1];
+            a.sort()
+            document.write(a, "<br>"); // 1, 10, 11, 169, 19, 23, 7, 99
+        	// 수치갑으로 정렬하기 위한 정렬 기준 함수를 인수로 제공
+            a.sort(function (a,b) {return a-b}) 
+            document.write(a, "<br>") // 1, 7, 10, 11, 19, 23, 99, 169
+        </script>
+        ```
+
+      * ![image-20201010114035534](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20201010114035534.png)
+
+      * ![image-20201010114059020](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20201010114059020.png)
+
+      * ![image-20201010114133866](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20201010114133866.png)
+
+    * Array.slice([begin[, end]])
+
+      * 배열 일부를 복사해서 새로운 배열로 반환 (시작 인덱스 default는 0, 종료 인덱스가 없으면 끝까지 복사)
+
+      * ```javascript
+            <script>
+                var a = [1,2,3,4,5,6,7,8,9,10];
+                var b = a.slice(5, 8); // 인덱스 5부터 7까지의 value 출력 (시작 값이 없으면 0부터, 끝 값이 없으면 끝까지 출력)
+                document.write(b) // 6,7,8
+            </script>
+        ```
+
+    * join(delimeter)
+
+      * 배열의 요소들을 하나의 문자열로 출력 (배열을 서버로 보낼 때 유용하게 사용)
+
+      * 분리자가 각 요소를 분리
+
+      * ```javascript
+        <script>
+            var fruits = ["apple", "banana", "orange"];
+            var joinFruits = fruits.join("+");
+            document.write(joinFruits); // apple+banana+orange
+        </script>
+        ```
+
+    * filter()
+
+      * 어떤 조건에 부합하는 요소만을 선택해서 새로운 배열로 만들어서 반환
+
+      * 요소를 선택하는 함수를 작성해서 인수로 전달
+
+      * ```
+        <script>
+            var numbers = [10, 20, 30, 40, 50];
+            function isBigEnough(element, index, array) {
+                return (element >= 30); // 반환하지 않으면 결과가 창에 나오지 않는다.
+                }
+            var filtered = numbers.filter(isBigEnough);
+            document.write("필터링 된 배열 : " + filtered);
+        </script>
+        ```
+
+    * 2차원 배열
+
+      * ```javascript
+        // Array 객체는 다른 Array 객체를 포함할 수 있음
+        <script>
+            var x = [0, 1, 2, 3, 4, 5, 6];
+            var y = [x];
+        
+            document.writeln(y[0], "<br>");
+            document.writeln(y[0][2], "<br>");
+            // Array 리터럴에서 2차원 배열 생성
+        	var matrix = [
+                [0,1,2],
+                [3,4,5],
+                [7,8,9]
+            ];
+            alert(matrix[1][1]); // 4
+        </script>
+        ```
+
+
+
+
+
+## 06. 오류 처리
+
+* 오류 발생 시
+
+  1. 오류가 발생하면 자동적으로 실행이 중단되면서 대화 상자 등장
+
+  2. 대화 상자에서 디버그하겠다고 '확인'을 누르면 소스 파일에서 오류가 발생한 위치를 보여줌
+
+  3. 그것을 참고하여 오류 수정
+
+> 자바스크립트에서 오류 = 예외 (exceptional event)
+>
+> 예외는 프로그램 실행 중 발생하는 이벤트
+>
+>  
+>
+> * 예외 발생 이유
+>   1. 개발자 타이핑 오류 (문법적인 오류)
+>   2. 브라우저마다 지원하는 특징의 차이
+>   3. 사용자로부터의 잘못된 입력
+>   4. 인터넷 서버 오류
+>
+>  
+>
+> * 프로그램에서 오류를 감지해서 우아하게 종료시키거나, 오류를 처리한 후 계속 실행하는 것이 Best
+>   * 이를 예외 처리라고 한다.
+>   * try-catch 구조를 이용
+
+
+
+* try-Catch 구조
+  * 자바스크립트 예외 처리기는 try 블록과 catch 블록으로 이뤄진다.
+
+```javascript
+try
+{
+    // 예외가 발생할 수 있는 코드
+}
+catch (변수)
+{
+    // 예외를 처리하는 코드
+}
+
+// 예시
+<script>
+    var msg=""
+    function test() {
+        try {
+            allert("Hello World!")
+        }
+        catch(error) {
+            msg = "다음과 같은 오류가 발생하였음 : " + error.message;
+            alert(msg)
+        }
+    }
+</script>
+```
+
+
+
+* throw 문장
+
+  * 개발자가 오류를 생성할 수 있도록 한다.
+
+  * 예외를 발생시키는 것을 예외를 던진다(throw)라고 표현
+
+  * 고의적으로 예외를 발생시키는 이유?
+
+    1. 개발자는 자신이 어떤 기준을 정하고 이 기준에 맞지 않으면 사용자에게 어떤 경고 메시지를 줄 수 있다.
+    2. 예로 음수를 입력하면 안되는 상황일 때 throw를 사용하면 깔끔해진다.
+
+    ```javascript
+    throw = "예외 메시지";
+    
+    // 예시 
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <script>
+            var solution = 53;
+            function test () {
+                try {
+                    var x = document.getElementById("number").value;
+                    if (x < 1 || x > 100) throw "범위를 벗어남";
+                    if (x < solution) throw "답보다 작음";
+                    if (x > solution) throw "답보다 큼";
+                    if (x == solution) throw "성공";
+                    if (x == "") throw "입력 없음";
+                    if (isNaN(x)) throw "숫자가 아님";
+                }
+                catch (error) {
+                    var y = document.getElementById("msg");
+                    y.innerHTML = "힌트 : " + error; 
+    // innerHTML : QuerySelector로 가져온 도큐먼트 오브젝트의 내용이나, 내부 HTML 코드를 JavaScript 코드에서 변경 할 수 있습니다.
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Number Guess</h1>
+        <p>1부터 100 사이의 숫자를 입력하시오.</p>
+        <input type="text" id="number"> 
+        <input type="button" value="숫자 추측" onclick="test()">
+        <p id="msg"></p>
+    </body>
+    </html>
+    ```
+
+    
+
+## Exercise
+
+* 4번 (0부터 백만까지 더하는데 걸리는 시간)
+
+```javascript
+<script>
+    var a = 0;
+	// 계산 전 시간을 밀리초로 변경 (1970/1/1 기준)
+    var startTime = new Date().getTime(); 
+
+    for (var i = 0; i <= 1000000; i++) {
+        a += i
+    }
+	// 계산이 끝난 후의 시간을 밀리초로 변경 (1970/1/1 기준)
+    var endTime = new Date().getTime(); 
+    var diff = endTime - startTime;
+
+    document.write(diff + "밀리초가 걸렸음")
+</script>
+```
+
+
+
+* 5번 (문자열 첫 번째 글자를 대문자로 변환)
+
+```javascript
+<script>
+    function strCap(s) {
+        var result = s[0].toUpperCase() + s.slice(1); // H + ong
+        alert(result)
+    }
+    strCap("hong"); // Hong
+</script>
+```
+
+
+
+* 6번 (Date 객체의 getMonth() 메서드로 금월의 이름을 출력하는 프로그램 작성)
+
+```javascript
+<script>
+    var month = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+    var now = new Date();
+    nowMonth = now.getMonth();
+    document.writeln("It is " + month[nowMonth]);
+</script>
+```
+
+
+
+* 7번 (프로그램 작성)
+
+```javascript
+/*
+1. "터미네이터", "트랜스포머"를 배열 요소로 가진 배열 movies 생성
+2. "맨오브스틸"을 배열에 추가
+3. 배열의 뒤에서부터 2번째 요소를 "스파이더맨"으로 변경
+4. 배열의 마지막 요소를 꺼내 alert()를 사용해 경고 박스에 표시
+*/
+
+<script>
+    var movies = ["터미네이터", "트랜스포머"];
+    movies.push("맨오브스틸")
+    movies[(movies.length-2)] = "스파이더맨" // 맨 뒤 인덱스를 어떻게 지정하는지 알아보기
+    alert(movies.pop())
+</script>
+```
+
+
+
+* 8번 (Math.random()을 이용해 배열에서 랜덤하게 하나의 요소를 선택해서 출력하는 프로그램 작성)
+
+```javascript
+    <script>
+        var arr = ["사과", "오렌지", "귤", "당근", "케일"];
+        var randomNumber = Math.floor(Math.random() * 5);
+
+        alert(arr[randomNumber] + randomNumber)
+    </script>
+```
+
+
+
+* 9번 (배열 요소의 값을 받으면 그 요소를 배열에서 찾아 인덱스로 반환하는 함수 find(arr, value)를 작성)
+
+```javascript
+<script>
+    arr = ["hello", 10, 32.6, true];
+
+    function find(arr, value) {
+        return document.writeln(arr.indexOf(value));
+    }
+
+    find(arr, true); // 3
+</script>
+```
+
+
+
+* 10번 
+  * 비속어가 사용되면 검출할 수 있는 함수 check(str)을 작성
+  * check()는 "XXX"를 문자열이 포함하면 true를 반환, 그렇지 않으면 false 반환
+
+```javascript
+<script>
+    // match()는 문자열 안에서 일치하는 컨텐츠를 탐색 ("XXX")
+    function check(str) {
+        if (str.match("XXX")) {
+            return document.write(true);
+        } 
+        else {
+            return document.write(false);
+        }
+    }
+    check("buy XXX now");
+</script>
+```
+
+
+
+* 11번 (일력)
+
+```javascript
+// setTimeout()을 이용하려면 div 안에 script를 작성해야 한다.
+<div id="timer">
+    <script>
+        function nowTimer() {
+            var now = new Date();
+            var nowYear = now.getUTCFullYear();
+            var nowMonth = now.getMonth();
+            var nowDay = now.getDay();
+            var nowHours = now.getHours();
+            var nowMinutes = now.getMinutes();
+            var nowSeconds = now.getSeconds();
+
+            var result = nowYear + "년 " + (nowMonth + 1) + "월 " + nowDay + "일 " + 				nowHours + "시 " + nowMinutes + "분 " + nowSeconds + "초 "
+            document.getElementById("timer").innerHTML = result;
+
+            setTimeout("nowTimer()", 1000);
+        }
+    	nowTimer();
+    </script>
+</div>
+```
+
+
+

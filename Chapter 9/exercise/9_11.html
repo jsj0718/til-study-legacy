@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <div id="timer">
+        <script>
+            function nowTimer() {
+                var now = new Date();
+                var nowYear = now.getUTCFullYear();
+                var nowMonth = now.getMonth();
+                var nowDay = now.getDay();
+                var nowHours = now.getHours();
+                var nowMinutes = now.getMinutes();
+                var nowSeconds = now.getSeconds();
+
+                var result = nowYear + "년 " + (nowMonth + 1) + "월 " + nowDay + "일 " + nowHours + "시 " + nowMinutes + "분 " + nowSeconds + "초 "
+                document.getElementById("timer").innerHTML = result;
+
+                setTimeout("nowTimer()", 1000);
+            }
+            nowTimer();
+        </script>
+    </div>
+</body>
+</html>
