@@ -125,6 +125,7 @@
   
 
 * 태그 이름으로 찾기
+  
   * getElementByTagName() 은 태그 이름을 인수로 받아서 이 태그를 사용하는 모든 요소를 배열에 넣어 반환
 
 ```javascript
@@ -178,4 +179,110 @@ var eleArray = document.getElementByTagName("div");
   > </div>
   > ```
   >
-  > 
+
+
+
+## 03. HTML 변경하기
+
+* JS로 HTML의 DOM을 변경하는 방법 3가지 (HTML 문서가 직접 변경되는 것이 아니라 DOM만 변경!)
+  1. 요소의 내용 변경 (요소객체.innerHTML = ~~)
+  2. 요소의 속성 변경 (요소객체.속성명 = ~~)
+  3. 요소의 스타일 변경 (요소객체.style.스타일속성 = ~~)
+
+
+
+* 요소의 내용 변경하기
+
+  * DOM을 사용하면 JS로 HTML 요소를 쉽게 변경할 수 있다. (innerHTML 속성 사용)
+  * innerHTML은 요소의 시작 태그와 종료 태그 사이에 놓여진 모든 HTML 코드와 텍스트를 의미
+
+  ```javascript
+  // <시작 태그> + <div>요소의 innerHTML + <종료 태그>
+  <div id="main"> div 요소 </div>
+  ```
+
+  * innerHTML 속성은 텍스트 or (HTML + 텍스트)를 가질 수 있다. (`<strong>`태그가 들어갈 수도 있다.)
+  * 따라서 어떤 요소의 콘텐츠(시작 태그와 종료 태그 사이의 내용)를 변경하려면, innerHTML 속성에 원하는 내용을 대입하면 된다.
+
+  ```javascript
+  document.getElementById("main").innerHTML = "웹 페이지 작성";
+  ```
+
+
+
+* 요소의 속성 변경하기
+
+  ```javascript
+  document.getElementById("image").src = "poodle.png";
+  // src는 속성 이름, "poodle.png"는 새로운 속성 값
+  ```
+
+  ```javascript
+  // 예시
+  <img src = "whitedog.png" id="image">
+      <script>
+      function imgChange() {
+  	    document.getElementById("image").src = "poodle.png";
+  	}
+  </script>
+  <input type="button" value="눌러보세요" onclick="imgChange()">
+  ```
+
+  
+
+* 요소의 스타일 변경하기
+
+  ```javascript
+  document.getElementById("p2").style.color = "blue";
+  // 스타일의 color 속성을 blue라는 새로운 속성 값으로 변경
+  ```
+
+  ```javascript
+  <head>
+      <script>
+          function changeStyle() {
+              document.getElementById("p2").style.color = "red";
+              document.getElementById("p2").style.fontStyle = "italic";
+              document.getElementById("p2").style.fontFamily = "Century Schoolbook";
+          }
+      </script>
+  </head>
+  <body>
+      <p id="p2">This is a paragraph.</p>
+      <input type="button" value="눌러보세요" onclick="changeStyle()">
+  </body>
+  ```
+
+  
+
+## 04. DOM 노드 삭제와 추가
+
+* 새로운 HTML 요소 생성 (동적으로 웹 페이지에 새로운 요소를 만들어 추가하는 단계)
+
+  1. 추가하기를 원하는 노드를 생성
+
+     ```javascript
+     // 노드 생성은 document 객체의 createTextNode() 메서드를 호출해서 진행
+     var node = document.createTextNode("동적으로 추가된 노드"); // createTextNode는 텍스트 데이터를 가진 노드를 생성
+     ```
+
+     
+
+  2. 문서 내 추가할 위치를 찾음
+
+     ```javascript
+     // 노드 생성 후 문서 트리에서 노드를 추가할 위치를 찾는다.(id를 이용하는 것이 가장 일반적)
+     // getElementById()를 호출해여 진행 (객체를 반환함)
+     var parent = document.getElementById("target");
+     ```
+
+     
+
+  3. 새로운 노드를 기존 노드에 연결
+
+     ```javascript
+     // 노드를 다른 노드에 자식 노드로 추가하려면 appendChild()를 사용
+     parent.appendChild(node);
+     ```
+
+     
