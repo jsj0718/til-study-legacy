@@ -286,3 +286,62 @@ var eleArray = document.getElementByTagName("div");
      ```
 
      
+     
+  4. 예시
+
+     ```javascript
+     <head>
+         <script>
+             function addtext(s) {
+                 if (document.createTextNode) {
+                     var node = document.createTextNode(s);
+                     document.getElementById("target").appendChild(node);
+                 }
+             }
+         </script>
+     </head>
+     <body>
+         // 새로운 노드는 <div> ... </div> 안에서 </div> 바로 앞에 추가된다.
+         <div id="target" onclick="addtext('동적으로 텍스트가 추가됩니다. ')">
+             여기를 클릭하세요.
+         </div>
+     </body>
+     
+     // 만약 <div> 태그 바로 뒤에 첫 번째 자식 노드를 추가하고 싶다면, 
+     // insertBefore(node, document.getElementById('target').firstChild);
+     ```
+
+     
+
+* 기존 HTML 요소 삭제
+
+```javascript
+<head>
+    <script>
+        function test() {
+            var parent = document.getElementById("target");
+            var child = document.getElementById("p1")
+
+            parent.removeChild(child);
+        }
+    </script>
+</head>
+<body>
+    <div id="target">
+        <p id="p1">첫 번째 단락</p>
+        <p id="p2">두 번째 단락</p>
+        <input type="button" value="누르세요!" onclick="test()">
+    </div>
+</body>
+
+// DOM의 구조상 반드시 삭제하고자 하는 요소와 그 부모 요소를 알아야 한다.
+```
+
+
+
+## 05. 브라우저 객체 모델
+
+* 브라우저 객체 모델
+  * BOM(Browser Object Model)은 웹 브라우저가 가지고 있는 모든 객체를 의미
+  * 차상위 (window), 그 아래로 (navigator, location, screen, document(DOM), frames 등 존재)
+
