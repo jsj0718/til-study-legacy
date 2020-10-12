@@ -344,4 +344,138 @@ var eleArray = document.getElementByTagName("div");
 * 브라우저 객체 모델
   * BOM(Browser Object Model)은 웹 브라우저가 가지고 있는 모든 객체를 의미
   * 차상위 (window), 그 아래로 (navigator, location, screen, document(DOM), frames 등 존재)
+  * 종류
+    * window : 메인 브라우저 윈도우
+    * window.navigator : 브라우저에 대한 정보 (버전 번호 등)
+    * window.screen : 사용자 화면
+    * window.history : 사용자가 방문한 URL 저장
+    * window.location : 현재 URL
+    * window.frames : 브라우저 윈도우를 차지하고 있는 프레임들
+    * window.document : 메인 브라우저에 표시된 HTML 문서
+
+
+
+* Window 객체
+
+  * window 객체는 BOM에서 최상위 객체로서 웹 브라우저 윈도우를 나타낸다.
+  * 모든 전역 자바스크립트 객체, 함수, 변수는 자동적으로 window 객체의 멤버가 된다. (alert(), prompt() 등)
+
+  ```javascript
+  // 동일한 문장 (alert가 window의 객체이기 때문)
+  alert("Hello World!");
+  window.alert("Hello World!");
+  ```
+
+
+
+> window 객체의 속성과 메서드 종류
+>
+> * open()과 close()
+>
+>   * open() : 새로운 브라우저 윈도우 오픈
+>
+>   ```javascript
+>   window.open(URL, name, specs, replace);
+>   // URL : 오픈할 페이지 URL
+>   // name : 타겟을 지정하거나 윈도우 이름(_blank, _parent, _self, _top, name)
+>   // specs : 여러가지 속성 (height=px, width=px, left=px, top=px, menubar=yes|no|1|0, resizable=yes|no|1|0, scrollbars=yes|no|1|0, titlebar=yes|no|1|0)
+>   // replace : 히스토리 리스트에서 새로운 엔트리인지 아니면 현재 엔트리를 대체하는지 여부 (ture-replace, false-create)
+>   ```
+>
+>   ```javascript
+>   // 예시
+>   <form>
+>       <input type="button" value="구글창 열기" 										onclick="window.open('http://www.google.com', '_blank', 'width=300, 			height=300', 'true')">
+>   </form>
+>   ```
+>
+>  
+>
+> * seTimeout(), setInterval()
+>
+>   * setTimeout() : 일정 시간이 지난 후 인수로 전달된 함수를 딱 한 번만 호출 (단위는 밀리초)
+>
+>   ```javascript
+>   setTimeout(code, milisce)
+>   // code : 호출되는 함수 이름, 여기서 직접 정의도 가능
+>   // milisec : 함수를 호출하기 전 흘러야 하는 시간
+>   ```
+>
+>   ```javascript
+>   <head>
+>       <script>
+>           function showAlert() {
+>               setTimeout(function () {alert("setTimeout()을 사용하여 표시함.")}, 3000);
+>           }
+>       </script>
+>   </head>
+>   <body>
+>       <div>
+>           버튼을 누르면 3초 후 경고 메시지 출현
+>       </div>
+>       <input type="button" value="눌러보세요" onclick="showAlert()">
+>   </body>
+>   ```
+>
+>   * setInterval()은 일정 시간마다 주기적으로 함수를 호출한다. (반드시 개발자가 종료시켜야 한다.)
+>     * 현재 시간 출력 프로그램 만들 때 이용
+>     * 주기적인 호출을 종료 시키려면 clearInterval()을 호출한다.
+>
+>   ```javascript
+>   
+>   ```
+>
+>   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
