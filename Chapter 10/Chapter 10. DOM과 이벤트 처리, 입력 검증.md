@@ -422,28 +422,250 @@ var eleArray = document.getElementByTagName("div");
 >     * 주기적인 호출을 종료 시키려면 clearInterval()을 호출한다.
 >
 >   ```javascript
+>   <head>
+>       <script>
+>         var id;
+>           function changeColor() {
+>               id = setInterval(flashText, 500);
+>           }
 >   
+>           function flashText() {
+>               var elem = document.getElementById("test")
+>               elem.style.color = (elem.style.color == "red") ? "blue" : "red";
+>               elem.style.backgroundColor = (elem.style.backgroundColor == "green") ? "yellow" : "green"; 
+>           }
+>   
+>           function stopColor() {
+>               clearInterval(id)
+>           }
+>       </script>
+>   </head>
+>   <body onload="changeColor()">
+>       <div id="test">this is a text.</div>
+>       <input type="button" value="중지" onclick="stopColor()">
+>   </body>
+>   ```
+>   
+>    
+>   
+> * moveTo(), moveBy()
+>
+>   * JS로 윈도우 이동 가능 (moveTo()는 절대적, moveBy()는 상대적)
+>
+>   ```javascript
+>   <head>
+>       <script>
+>           function openWindow() {
+>               w = window.open(' ', ' ', 'width=200, height=100');
+>               w.document.write("오늘 다음과 같은 상품을 싸게 팝니다.");
+>               w.moveTo(0,0);
+>           }
+>   
+>           function moveWindow() {
+>               w.moveBy(10,10);
+>               w.focus(); // 특정 윈도우로 키보드 포커스를 이동
+>           }
+>       </script>
+>   </head>
+>   <body>
+>       <button onclick="openWindow()">윈도우 생성</button> <br>
+>       <button onclick="moveWindow()">윈도우 이동</button>
+>   </body>
+>   
+>   // 윈도우 크기 변경 시 : resizeTo(), resizeBy()
+>   // 윈도우 스크롤 위치 이동 시 : scrollTo(), scrollBy()
 >   ```
 >
->   
+>  
+>
+> * screen 객체 (사용자 화면)
+>
+>   * availHeight : 화면 높이 반환 (태스크 바를 제외한 영역)
+>   * availWidth : 화면 너비 반환 (태스크 바를 제외한 영역)
+>   * colorDepth : 컬러 팔레트의 비트 깊이를 반환
+>   * pixelDepth : 화면 컬러 해상도 반환
+>   * height : 화면 전체 높이 반환
+>   * width : 화면 전체 너비 반환
+>
+>   ```javascript
+>   <head>
+>       <script>
+>           function maxopen(url, winattributes) {
+>               var maxwindow = window.open(url, "", winattributes);
+>               maxwindow.moveTo(0, 0);
+>               maxwindow.resizeTo(screen.availWidth, screen.availHeight);
+>           }
+>       </script>
+>   </head>
+>   <body>
+>       <a href="#" onclick="maxopen('http://www.google.com', 'resizable=0, scrollbars=0, status=0'); return false">전체 화면 보기</a>
+>   </body>
+>   ```
+>
+>  
+>
+> * location 객체
+>
+>   * 현재 url에 대한 정보를 가지고 있다. (window 객체의 일부)
+>   * 속성
+>
+>   > hash : url 중 앵커부분을 반환 (#section1과 동일한 부분)
+>   >
+>   > host : url 중 hostname과 port를 반환
+>   >
+>   > hostname : url 중에서 hostname을 반환
+>   >
+>   > href : 전체 url 반환
+>   >
+>   > pathname : url 중 경로(path) 반환
+>   >
+>   > port : url 중 port 반환
+>   >
+>   > protocol : url 중 protocol 부분 반환
+>   >
+>   > search : url 중 쿼리 부분 반환
+>
+>   * 메서드
+>
+>   > assign() : 새로운 문서 로드
+>   >
+>   > reload() : 현재 문서 재로드
+>   >
+>   > replace() : 현재 문서를 새로운 문서로 대체
+>
+>  
+>
+> * navigator 객체
+>
+>   * 브라우저에 대한 정보를 가짐
+>   * 속성
+>
+>   > appCodeName : 브라우저 코드 네임
+>   >
+>   > appName : 브라우저 이름
+>   >
+>   > appVersion : 브라우저 버전 정보
+>   >
+>   > cookieEnabled : 브라우저에서 쿠키가 활성화되어 있는지 여부
+>   >
+>   > onLine : 브라우저가 인터넷에 연결되어 있으면 true
+>   >
+>   > platform : 브라우저가 컴파일된 플랫폼
+>   >
+>   > userAgent : 브라우저에서 서버로 가는 user-agent 헤더
+>
+>   * 메서드
+>
+>   > JavaEnabled() : 자바 사용 가능 여부
+>   >
+>   > taintEnabled() : 브라우저에서 data tainting이 가능한지 여부
+>
+>   ```javascript
+>   <script>
+>       // navigator는 딕셔너리 형태로 정보 저장
+>       for (var key in navigator) {
+>           value = navigator[key];
+>           document.write(key + ": " + value + "<br>");
+>       }
+>   </script>
+>   ```
 
 
 
 
 
+## 06. 이벤트 처리
+
+1. 웹 페이지 상호작용 발생 시 이벤트가 일어남 (예로 특정 요소 클릭 또는 마우스를 위로 올릴 때 등)
+2. 브라우저에 의해 이벤트가 발생함(예로 웹 페이지나 이미지의 로드가 끝날 때, 페이지를 스크롤할 때 등)
 
 
 
+> * 정리 (이벤트가 발생할 수 있는 상황)
+>
+> 1. 마우스 클릭
+> 2. 웹 페이지 로딩
+> 3. 호버링(hovering)으로 마우스를 어떤 요소 위에서 움직일 때
+> 4. HTML 입력 양식에서 입력 박스를 선택할 때
+> 5. 키보드의 키를 누를 때
+>
+>  
+>
+> * 이 떄, 특정 동작을 하고 싶으면 자바스크립트를 사용해야 한다.
 
 
 
+* onclick 이벤트
+
+  * 사용자가 버튼을 클릭하는 것과 같은 이벤트가 발생 시 미리 정해놓은 코드가 실행된다.
+
+  ```javascript
+  // 헤딩이 클릭되면 등록된 함수가 실행된다.
+  <h1 onclick="change()">이것은 클릭 가능한 헤딩</h1>
+  ```
+
+  ```javascript
+  // 예시
+  <head>
+      <script>
+          function changeColor(c) {
+              document.getElementById("test").style.backgroundColor = c;
+          }
+      </script>
+  </head>
+  <body id="test">
+      <form method="POST">
+          <input type="radio" name="C1" value="v1" onclick="changeColor('lightblue')"> 파란색
+          <input type="radio" name="C1" value="v2" onclick="changeColor('lightgreen')"> 녹색
+      </form>
+  </body>
+  ```
+
+  
+
+* onload(웹 페이지 진입)와 onunload(웹 페이지 떠남) 이벤트
+
+  * onload 이벤트로 방문자의 브라우저 종류나 버전을 알 수 있어서 적절한 버전의 웹페이지 로드 가능
+  * onload와 onunload는 쿠키를 처리하는데 사용한다
+
+  ```javascript
+  <head>
+      <script>
+          function onLoadDoc() {
+              alert("문서가 로드됨");
+              document.body.style.backgroundColor = "lightgreen";
+          }
+      </script>
+  </head>
+  
+  <body onload="onLoadDoc()">
+  </body>
+  ```
+
+  
 
 
 
+* onchange 이벤트
 
+  * 입력 필드 검증 시 사용
 
+  ```javascript
+  <head>
+      <script>
+          function textChange() {
+              var s = document.getElementById("test");
+              s.value = s.value.toLowerCase();
+          }
+      </script>
+  </head>
+  <body>
+      영어단어 : <input type="text" id="test" onchange="textChange()">
+      <p>입력필드를 벗어나면 소문자로 변경</p>
+  </body>
+  ```
 
-
+  
 
 
 
