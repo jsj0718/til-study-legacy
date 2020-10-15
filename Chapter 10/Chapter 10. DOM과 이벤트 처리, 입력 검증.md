@@ -667,7 +667,15 @@ var eleArray = document.getElementByTagName("div");
 
   
 
+* onmouseover 이벤트
 
+  * onmouseover과 onmousesout 이벤트는 사용자가 HTML 요소 위에 마우스를 올리거나 요소를 떠날 때 발생한다.
+
+  ```javascript
+  
+  ```
+
+  
 
 
 
