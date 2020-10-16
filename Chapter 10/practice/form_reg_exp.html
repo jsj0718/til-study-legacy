@@ -1,0 +1,35 @@
+<!-- 풀이 1 -->
+<!-- 
+<script>
+    function onlyNumber(field) {
+        var exp = /^[0-9]+$/
+        if (!exp.test(field.value)) {
+            alert("숫자만 입력!!");
+            return false;
+        }
+    }
+</script>
+
+<form>
+    전화번호(-없이 입력) : <input type="text" id="test1"> <input type="button" value="확인" onclick="onlyNumber(document.getElementById('test1'))">
+</form>
+ -->
+
+<!-- 풀이 2 -->
+<script>
+    function checkNumeric(field, msg) {
+        exp = /^[0-9]+$/
+        if (field.value.match(exp)) {
+            return true;
+        }
+        else {
+            alert(msg);
+            field.focus()
+            return false;
+        }
+    }
+</script>
+
+<form>
+    전화번호(-없이 입력) : <input type="text" id="phoneNumber"> <input type="button" value="확인" onclick="checkNumeric(document.getElementById('phoneNumber'), '숫자만 입력!')">
+</form>

@@ -672,40 +672,335 @@ var eleArray = document.getElementByTagName("div");
   * onmouseover과 onmousesout 이벤트는 사용자가 HTML 요소 위에 마우스를 올리거나 요소를 떠날 때 발생한다.
 
   ```javascript
+  <script>
+      function borderOn(elem) {
+        elem.style.border = "2px solid red";
+      }
+      function borderOff(elem) {
+          elem.style.border = "";
+      }
+  </script>
   
+  <div style="background-color: yellow;", width="200px" onmouseover="borderOn(this)" onmouseout="borderOff(this)">
+      마우스를 이 요소 위에 올려라.
+  </div>
+  ```
+  
+  
+
+* onmousedown, onmouseup, onclick 이벤트
+
+  * 우선 순위
+    1. onmousedown
+    2. onmouseup
+    3. onclick
+
+  ```javascript
+  <script>
+  	function buttonDown(elem) {
+      	elem.style.color = "black";
+  	}
+  
+      function buttonUp(elem) {
+      	elem.style.color = "red";
+  	}
+  </script>
+  <button onmousedown="buttonDown(this)" onmouseup="buttonUp(this)">눌러!</button>
+  ```
+
+
+
+
+```javascript
+// 계산기 예제
+
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        result = "";
+
+        function add(elem) {
+            result += elem;
+            document.getElementById("display").value = result;
+        }
+
+        function compute() {
+            document.getElementById("display").value = eval(result);
+        }
+
+        function clearDisplay() {
+            result = "";
+            document.getElementById("display").value = "0"
+        }
+    </script>
+</head>
+<body>
+    <form>
+        display <input type="text" id="display" value="0" size="30"> 
+        <br>
+        
+        <input type="button" value="7" onclick="add('7')">
+        <input type="button" value="8" onclick="add('8')">
+        <input type="button" value="9" onclick="add('9')">
+        <input type="button" value="/" onclick="add('/')">
+        <br>
+
+        <input type="button" value="4" onclick="add('4')">
+        <input type="button" value="5" onclick="add('5')">
+        <input type="button" value="6" onclick="add('6')">
+        <input type="button" value="*" onclick="add('*')">
+        <br>
+
+        <input type="button" value="1" onclick="add('1')">
+        <input type="button" value="2" onclick="add('2')">
+        <input type="button" value="3" onclick="add('3')">
+        <input type="button" value="-" onclick="add('-')">
+        <br>
+        
+        <input type="button" value="0" onclick="add('0')">
+        <input type="button" value="+" onclick="add('+')">
+        <br>
+
+        <input type="button" value="Clear" onclick="clearDisplay()">
+        <input type="button" value="Enter" onclick="compute()">
+
+    </form>
+</body>
+</html>
+```
+
+
+
+
+
+# 07. 폼의 유효성 검증
+
+> * 자바스크립트는 HTML 폼 안의 데이터를 서버로 보내기 전 검증하는데 많이 사용한다.
+> * 자바스크립트로 사용자 실수를 수정한 후 서버로 보내면 서버 부하를 덜어낼 수 있다.
+> * 검증 사항
+>   * 필수적인 필드
+>   * 유효한 길이의 텍스트
+>   * 유효한 이메일 주소
+>   * 유효한 날짜
+>   * 숫자 필드에 텍스트 입력 여부
+
+
+
+* 폼 데이터 접근
+
+  * form에 접근하기 위해 id나 name 속성을 이용
+
+  ``` javascript
+  <input type="text" id="addr" name="addr">
+  // id : 페이지 요소 식별 (getElementById() 이용)
+  // name : 폼 내부에서 필드 식별 (form 객체에서 name을 이용)
+  ```
+
+  ```javascript
+  <input type="text" name="addr" onclick="display(this.form)">
+      
+  // form 객체는 배열이고, 각 배열 요소는 form["name"] 형식으로 name 속성에 접근 가능하다.
+  function display() {
+      alert(form["adrr"].value);
+  }
   ```
 
   
 
+* 언제 데이터를 검증하는가?
+  1. 사용자가 입력 필드를 마우스로 선택 시 (onfocus Event 발생)
+  2. 사용자가 데이터 입력 후 입력 필드 떠날 때 (onblur Event 발생)
+     * 필드가 비어 있어도 발생 O
+  3. 필드를 떠날 때 입력 내용 변경 시 (onchange Event 발생)
+     * 필드가 비어 있으면 발생 X
 
 
 
+* 공백 검증
+
+  ```javascript
+  <script>
+      function checkNotEmpty(field) {
+          if (field.value.length == 0) {
+              alert("필드가 비었음!")
+              field.focus();
+              return false
+          }
+          return true
+      }
+  </script>
+  
+  <form>
+      이름 : <input type="text" id="user"> <input type="button" value="확인" onclick="checkNotEmpty(document.getElementById('user'))">
+  </form>
+  ```
+
+  
+
+* 데이터 길이 검증
+
+  ```javascript
+  <script>
+      function checkIdLength(field, min, max) {
+          if (field.value.length >= 6 & field.value.length <= 8) {
+              return true;
+          }
+          else {
+              alert(min + "문자와" + max + "문자 사이로 입력!");
+              field.focus();
+              return false;
+          }
+      }
+  </script>
+  
+  <form>
+      이름(6-8문자) : <input type="text" id="user"> <input type="button" value="확인" onclick="checkIdLength(document.getElementById('user'), 6, 8)">
+  </form>
+  ```
 
 
 
+* 정규식(특정한 규칙을 가지고 있는 문자열을 표현하는 수식)
+
+  * 문자열의 검색과 치환을 위해 사용
+
+  ```javascript
+  ^[0-9]+abc$
+  // ^ : 문자열의 시작
+  // [0-9] : 0부터 9까지의 문자 중 하나
+  // + : 한 번 이상 반복
+  // abc : 문자열
+  // $ : 문자열의 끝
+  ```
+
+  > 정규 표현식
+  >
+  > * ^ : 문자열의 시작
+  > * $ : 문자열의 끝
+  > * . : 문자 (한 개의 문자와 일치)
+  > * \d : 숫자 (한 개의 숫자와 일치)
+  > * \w : 문자와 숫자 (한 개의 문자나 숫자와 일치)
+  > * \s : 공백 문자 (공백, 탭, 줄 바꿈, 캐리지 리턴 문자와 일치)
+  > * [] : 문자 종류, 문자 범위 ([abc]는 a or b or c, [1-9]는 1부터 9)
+  >
+  > 
+  >
+  > 수량 한정자
+  >
+  > *  `*` : 0회 이상 반복 ("a*" 는 "", "a", "aa", "aaa")
+  > * `+` : 1회 이상 ("a+"는 "a", "aa", "aaa")
+  > * `?` : 0 또는 1회 ("a?"는 "", "a")
+  > * {m} : m회 ("a{3}"는 "aaa")
+  > * {m,n} : m회 이상 n회 이하 ("a{1,3}"은 "a", "aa", "aaa")
+  > * (ab) : 그룹화 ( (ab)*는 "", "ab", "abab" 등 )
+  >
+  > > 예시
+  > >
+  > > 1. /.+/ : 어떤 문자가 1회 이상 반복
+  > > 2. /\w*/ : 어떤 문자나 숫자로 이루어진 문자열
+  > > 3. ^`[1-9][0-9]`*$ : 처음 숫자가 0이 아니고 전체가 숫자 (e.x 가격)
+  > > 4. /^\d{6}-\d[7]$/ : 중간에 -이 있는 주민등록번호
+  > > 5. /(Good)?Bye/ : GoodBye or Bye
+  >
+  >  
+  >
+  > 자바스크립트 정규 표현식은 RegExp 객체에 의해 표현
+  >
+  > ```javascript
+  > var exp = /^\d{10}$/;
+  > // RegExp 객체의 test() 메서드는 일치하면 true 반환
+  > if (!exp.test(field.value)) {
+  >     alert("오류!!");
+  >     return false;
+  > }
+  > ```
 
 
 
+* 숫자나 문자 입력 검증(신용카드, 전화번호, 우편번호 등)
+
+  ```javascript
+  <!-- 풀이 1 -->
+  <!-- 
+  <script>
+      function onlyNumber(field) {
+          var exp = /^[0-9]+$/
+          if (!exp.test(field.value)) {
+              alert("숫자만 입력!!");
+              return false;
+          }
+      }
+  </script>
+  
+  <form>
+      전화번호(-없이 입력) : <input type="text" id="test1"> <input type="button" value="확인" onclick="onlyNumber(document.getElementById('test1'))">
+  </form>
+   -->
+  
+  <!-- 풀이 2 -->
+  <script>
+      function checkNumeric(field, msg) {
+          exp = /^[0-9]+$/
+          if (field.value.match(exp)) {
+              return true;
+          }
+          else {
+              alert(msg);
+              field.focus()
+              return false;
+          }
+      }
+  </script>
+  
+  <form>
+      전화번호(-없이 입력) : <input type="text" id="phoneNumber"> <input type="button" value="확인" onclick="checkNumeric(document.getElementById('phoneNumber'), '숫자만 입력!')">
+  </form>
+  ```
+
+  
+
+* 이메일 검증
+
+  * 체크사항
+    1. @gmai.com : @ 앞에 문자가 전혀 없다.
+    2. ho!ng@gmail.com : 허용되지 않는 문자 ! 존재
+    3. hong@g_mail.com : 도메인 이름에는 _ 허용 X
+  * 예시
+
+  ```javascript
+  1. var exp = /^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-Z0-9]{2,}$/;
+  
+  2. var exp = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+\.([a-zA-Z])+([a-zA-Z])+/;
+  
+  3. var exp = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,})+$/;
+  ```
 
 
 
+* 선택 검증 (select field)
 
+  ```javascript
+  <script>
+      function checkSelection(elem, msg) {
+          if (elem.value == "0") {
+              alert(msg);
+              elem.focus();
+              return false;
+          }
+          return true;
+      }
+  </script>
+  
+  <form>
+      과일 선택 <select id="fruits" class="required">
+          <option value="0">선택하세요</option>
+          <option value="1">사과</option>
+          <option value="2">배</option>
+          <option value="3">바나나</option>
+      </select>
+      <input type="button" value="확인" onclick="checkSelection(document.getElementById('fruits'), '하나를 선택!')">
+  </form>
+  ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  

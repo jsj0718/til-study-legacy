@@ -5,17 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script>
-        function borderOn(elem) {
-            elem.style.border = "2px solid red";
+        function borderOn() {
+            var s = document.getElementById("test");
+            s.style.border = "2px solid red";
         }
-        function borderOff(elem) {
-            elem.style.border = "";
+
+        function borderOff() {
+            var s = document.getElementById("test");
+            s.style.border = ""
         }
     </script>
 </head>
 <body>
-    <div style="background-color: yellow;", width="200px" onmouseover="borderOn(this)" onmouseout="borderOff(this)">
-        마우스를 이 요소 위에 올려라.
-    </div>
+    <div id="test" style="background-color: yellow;" width="200px" onmouseover="borderOn()" onmouseout="borderOff()">
+        마우스!
+    </div> 
 </body>
 </html>

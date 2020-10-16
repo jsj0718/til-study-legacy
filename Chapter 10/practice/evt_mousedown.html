@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function buttonDown(elem) {
+            elem.style.color = "black";
+        }
+
+        function buttonUp(elem) {
+            elem.style.color = "red";
+        }
+    </script>
+</head>
+<body>
+    <button onmousedown="buttonDown(this)" onmouseup="buttonUp(this)">눌러!</button>
+</body>
+</html>
