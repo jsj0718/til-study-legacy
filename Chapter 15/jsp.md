@@ -77,3 +77,62 @@
       >  4. 이 객체가 서블릿 컨테이너에 로딩되어 실행
       >  5. 실행된 결과는 웹 서버를 통해 클라이언트에 응답 형태로 전달됨
       >  6. 이 변환은 한 번만 일어나므로 속도는 느려지지 않는다.
+
+
+
+## 04. 기본적인 JSP
+
+* JSP 수식
+
+  * 어떤 HTML 파일도 확장자만 jsp로 변경하면 jsp파일로 변환 가능
+  * HTML 안에 자바를 내장하는 방법
+
+  ```html
+  <!-- 자바 수식, 실행될 때마다 새롭게 실행된다. -->
+  <%= expression %> 
+  ```
+
+  * 수식은 실행 시간에 계산된 후 string 객체로 변환되어 수식으로 나타나는 위치에 삽입된다.
+    * 자바에는 String이라는 Class가 존재한다. String Class는 문자열을 손쉽게 사기 위해서 존재하는 Class 이다.
+  * 수식은 Java에서 유효한 수식이면 어떤 것이든 가능하며, 문장 끝에 ;를 붙이면 안된다.
+
+  > 서버 관점에서 바라보기
+  >
+  > 1. JSP 파일이 최초로 사용되면 톰캣은 JSP를 서블릿으로 변환하고 서블릿을 컴파일하여 실행한다.
+  > 2. 서블릿 코드는 톰캣의 "work\Catalina\localhost\Hello" 디렉토리에서 찾을 수 있다.
+  > 3. 이름은 hello_jsp.java로 저장되어 있다.
+  >
+  > ```html
+  > out.write("<!DOCTYPE html>\r\n");
+  >       out.write("<html lang=\"en\">\r\n");
+  >       out.write("<head>\r\n");
+  >       out.write("    <meta charset=\"UTF-8\">\r\n");
+  >       out.write("    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n");
+  >       out.write("    \r\n");
+  >       out.write("    <title>Hello World</title>\r\n");
+  >       out.write("</head>\r\n");
+  >       out.write("<body>\r\n");
+  >       out.write("    안녕하세요. 현재 시각은 ");
+  >       out.print( new java.util.Date() );
+  >       out.write("입니다.\r\n");
+  >       out.write("</body>\r\n");
+  >       out.write("</html>");
+  > ```
+  >
+  > * HTML 문장은 out.write를 이용해 그대로 출력
+  > * JSP 수식은 계산되고 계산 결과값이 response 메시지 일부로 출력
+  > * 동일한 JSP 파일을 다시 사용할 때는 속도가 빨라진다. 왜냐하면 미리 변환된 서블릿 코드가 바로 실행되기 때문이다. (JSP -> 서블릿 변환과 서블릿 컴파일 과정 생략)
+
+
+
+* 스크립틀릿
+
+<%= %> 안에 자바 수식을 내장할 수 있지만, 많은 코드를 넣을 수 없다. 하지만 JSP는 JSP 안에 상당히 많은 분량의 자바 코드 블록을 작성할 수 있도록 허용한다.
+
+코드 블록은 <% %> 사이에 넣으면 된다. (= 생략)
+
+```java
+// 스크립틀릿
+<% code_block %>
+```
+
