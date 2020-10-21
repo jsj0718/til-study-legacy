@@ -82,6 +82,15 @@
 
 ## 04. 기본적인 JSP
 
+* JSP 인코딩 방법
+
+```html
+<!-- JSP 인코딩 방법 -->
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+```
+
+
+
 * JSP 수식
 
   * 어떤 HTML 파일도 확장자만 jsp로 변경하면 jsp파일로 변환 가능
@@ -136,3 +145,144 @@
 <% code_block %>
 ```
 
+```html
+<!-- 스크립틀릿에 포함된 자바 코드로 작성된 JSP -->
+<%
+java.util.Date date = new java.util.Date();
+%>
+
+안녕하세요. 현재 시각은 <%= date %> 입니다.
+```
+
+```html
+<!-- JSP 수식(<%= %>)이 없는 소스, out 변수로 대체 -->
+<%
+   System.out.println("날짜를 출력해본다.") // ?
+   java.util.Date date = new java.util.Date();
+%>
+	안녕하세요. 현재 시각은
+<%
+   out.println(String.valueOf(date)); // String은 문자열, valueOf는 값
+%>
+	입니다.
+```
+
+```html
+<!--
+request는 브라우저와 서버 사이의 상호작용을 참조.
+만약 사용자가 URL을 클릭하면 브라우저는 URL을 포함한 request 객체를 생성해서 서버로 보낸다.
+서버가 데이터를 반환하면 브라우저는 화면에 표시한다.
+request의 일부로 다양한 데이터가 포함되어 있는데, 여기에는 브라우저가 서버로부터 원하는 정보가 들어있다. (호스트 이름, ip 주소 등)
+-->
+<%
+	java.util.Date date = new java.util.Date();
+%>
+안녕하세요. 현재 시각은 
+<%
+	out.println(date);
+	out.println("<br>이고 ip 주소는");
+	out.println(request.getRemoteAddr());
+%>
+입니다.
+    
+<!--
+request 유사 변수로 response가 존재한다. 
+(브라우저에게 보내는 응답을 작성할 때 사용)
+
+* 예시
+response.sendRedirect(anotherUrl);
+-->
+```
+
+
+
+* 스크립틀릿과 HTML 같이 사용
+
+```html
+<table border=2>
+    <%
+        int n = 3;
+        for (int i = 0; i < n; i++) {
+    %>
+    <tr>
+        <td>Number</td>
+        <td><%= i+1 %></td>
+    </tr>
+    <%
+    }
+    %>
+</table>
+<!--
+%>는 HTML로 돌아가게 하고, <%는 스크립틀릿으로 돌어가게 한다.
+즉 이를 통해 HTML도 제어문을 통해 제어 가능하다.
+```
+
+
+
+* JSP 주석
+
+```html
+<%-- 여기는 주석 --%>
+```
+
+
+
+* JSP 지시어
+
+```html
+<!DOCTYPE html>
+<%@ page import="java.util.*"%>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+    <title>Document</title>
+</head>
+<body>
+    <%
+        Date date = new Date();
+    %>
+    현재 시각은 <%= date %> 입니다.
+</body>
+</html>
+```
+
+```html
+<%@ page import="java.util.*" %>
+<!--
+<%@ : 지시어 시작
+page : 페이지에 관한 지시어
+import="java.util.*" : 페이지를 읽어들임
+%> : 지시어 종료
+-->
+```
+
+```html
+<!-- include 지시어, 물리적으로 다른 파일의 내용을 포함할 때 사용 -->
+아래에서 hello.jsp를 포함시킨다. <br>
+<%@ include file="hello.jsp" %>
+```
+
+
+
+* JSP 선언
+
+  * 개발자가 작성하는 JSP는 하나의 클래스로 변환된다.
+  * 개발자가 작성하는 모든 스크립틀릿은 이 클래스 속 하나의 메서드 안에 위치된다.
+  * 개발자는 필요한 변수와 메서드 선언을 이 클래스에 추가할 수 있다.
+
+  ```html
+  <!-- 변수나 메서드 선언 방법 -->
+  <%! Date date;... %>
+  ```
+
+> 그러나 일반적으로 JSP 선언으로 변수를 선언하는 것은 좋지 않다. JSP는 일반적으로 멀티 스레드 형태로 실행되는데, 한 개의 변수를 사용하기 위해 다툴 수가 있다. (동기화로 해결 가능하나 성능이 나빠진다.) 
+>
+> 서로 다른 페이지끼리 데이터를 공유하려면, session 객체나 request 객체를 이용하는 것이 좋다. 
+>
+> 하지만 스크립틀릿 안에서 변수를 선언하는 것은 지역 변수이기에 상관없다.
+>
+>  
+>
+> JSP에서 제공되는 9개의 내장 객체는 request, out, session, application, config, pageContext, page, exception 이다.
