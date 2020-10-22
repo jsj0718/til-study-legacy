@@ -286,3 +286,9 @@ import="java.util.*" : 페이지를 읽어들임
 >  
 >
 > JSP에서 제공되는 9개의 내장 객체는 request, out, session, application, config, pageContext, page, exception 이다.
+
+
+
+## JSP 제어문
+
+JSP 파일에는 완전한 Java 언어의 제어문을 사용할 수 있다. 
