@@ -292,3 +292,87 @@ import="java.util.*" : 페이지를 읽어들임
 ## JSP 제어문
 
 JSP 파일에는 완전한 Java 언어의 제어문을 사용할 수 있다. 
+
+
+
+* 조건문
+
+```html
+<%! int day = 3; %>
+<html>
+<head>
+	    
+</head>    
+<body>
+    <% if (day == 1 | day == 7) { %>
+       <p>오늘은 주말입니다.</p>
+    <% } else { %>
+        <p>오늘은 주말이 아닙니다.</p>
+    <% } %>    
+</body>
+</html>
+```
+
+```html
+<%! int day = 2; %>
+<html>
+<head>
+	    
+</head>    
+<body>
+<%
+switch(day) {
+case 0:
+   out.println("오늘은 일요일입니다.");
+   break
+case 1:   
+	out.println("오늘은 월요일입니다.");
+   break
+case 2:   
+	out.println("오늘은 화요일입니다.");
+   break
+case 3:   
+	out.println("오늘은 수요일입니다.");
+   break
+case 4:   
+	out.println("오늘은 목요일입니다.");
+   break
+case 5:   
+	out.println("오늘은 금요일입니다.");
+   break
+case 6:   
+	out.println("오늘은 토요일입니다.");
+   break
+default:
+   out.println("잘못된 요일입니다.")
+}
+%>
+</body>
+</html>
+```
+
+
+
+* 반복문(for, while, do...while)
+
+```html
+<%! int fontSize; %>
+<html>
+<head>
+	    
+</head>    
+<body>
+<%for ( fontSize = 1; fontSize <= 6; fontSize++) { %>
+    <font color = "red" size = "<%= fontSize %>">
+    안녕하세요?
+    </font> <br>
+<%}%>
+</body>
+</html>
+```
+
+
+
+
+
+## 07. MySQL
