@@ -8,7 +8,7 @@
 
  
 
-HTML5의 경우 다음 코드를 <head> 태그 안에 삽입하여 페이지 언어셋이 utf-8임을 브라우저에 알립니다. (기본)
+* HTML5의 경우 다음 코드를 <head> 태그 안에 삽입하여 페이지 언어셋이 utf-8임을 브라우저에 알립니다.
 
 ```
 <meta charset="utf-8">
@@ -16,7 +16,7 @@ HTML5의 경우 다음 코드를 <head> 태그 안에 삽입하여 페이지 언
 
  
 
-JSP의 경우 다음 코드를 <head> 태그 안에 삽입하면 됩니다.
+* JSP의 경우 다음 코드를 <head> 태그 안에 삽입하면 됩니다.
 
 ```
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -25,3 +25,11 @@ JSP의 경우 다음 코드를 <head> 태그 안에 삽입하면 됩니다.
  
 
 메모장을 사용하신다면, 저장 전에 하단의 인코딩 드롭박스에서 UTF-8을 선택하셔야 합니다.
+
+
+
+* request 처리가 이루어지는 jsp파일에 request.setCharacterEncoding("UTF-8"); 추가합니다.
+
+```
+<%@ request.setCharacterEncoding("utf-8"); %>
+```

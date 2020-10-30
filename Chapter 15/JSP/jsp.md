@@ -376,3 +376,101 @@ default:
 
 
 ## 07. MySQL
+
+
+
+* 데이터 정의 명령어
+  * CREATE : 사용자가 제공하는 컬럼 이름을 가지고 테이블 생성(데이터 타입 지정 필요)
+  * ALTER : 테이블에서 컬럼을 추가하거나 삭제
+  * DROP : 테이블의 모든 레코드를 삭제하고 테이블 정의 자체를 DB로부터 삭제
+  * USE : 어떤  DB를 사용하는지 지정
+* 데이터 조작 명령어
+  * SELECT : DB로부터 데이터를 쿼리하고 출력한다. SELECT 명령어는 결과 집합에 포함시킬 컬럼을 지정한다. (가장 많이 사용)
+  * INSERT : 새로운 레코드를 테이블에 추가
+  * DELETE : 지정된 레코드를 테이블로부터 제거
+  * UPDATE : 테이블에서 레코드에 존재하는 값을 변경
+
+
+
+* 데이터베이스 생성하기
+
+  ```sql
+  CREATE TABLE 테이블이름 (컬럼이름1 자료형1, ...);
+  
+  DROP DATABASE book_db;
+  CREATE DATABASE book_db;
+  USE book_db;
+  CREATE TABLE book_table (
+  	id INT NOT NULL auto_increment,
+  	title VARCHAR(50),
+  	authot VARCHAR(20),
+  	price INT,
+  	qty INT,
+  	PRIMARY KEY(id)
+  );
+  
+  desc book_table;
+  ```
+
+  * 컬럼 이름 + 컬럼 타입 (n)
+  * 자주 쓰는 컬럼 타입에는 INT, DECIMAL(n, d), CHAR(n) -> 글자 개수가 일정, VARCHAR(n) -> 글자 개수가 가변, DATE 등이 있다. 
+  * desc 테이블 이름 : 테이블 명세 확인하는 명령어
+
+
+
+* 레코드 추가하기
+
+  * INSERT 명령어 사용
+
+  ```SQL
+  INSERT INTO 테이블 이름 [(컬럼이름1, ...)] VALUES (값1, ...);
+  
+  // 예시 
+  INSERT INTO book_table (title, author, price, qty) VALUES
+  	("검술의 기초", "홍길동", 20000, 30),
+  	...
+  ```
+
+
+
+* 레코드 검색하기
+
+  * SELECT 문장 사용 (SELECT 문장은 쿼리라고 불리며, 이는 테이블에서 정보를 얻어내기 위해 사용된다.)
+
+  ```SQL
+  SELECT 컬럼이름 FROM 테이블이름 [WHERE 조건]
+  	[ORDER BY 정렬방식]
+  	
+  SELECT : 쿼리 명령어
+  컬럼이름 FROM 테이블이름 : 필요한 컬럼을 테이블에서 선택
+  WHERE 조건 : 검색 조건
+  ORDER BY 정렬방식 : 결과의 정렬 여부
+  
+  // 예시 1
+  SELECT title, publisher, price FROM books;
+  (books라는 테이블에서 title, publisher, price 컬럼을 출력)
+  
+  SELECT 명령어 결과로 나오는 레코드 집합을 결과 집합이라고 부름
+  
+  
+  // 예시 2 (SELECT * 는 모든 컬럼을 선택함을 의미)
+  SELECT * from books;
+  
+  // 예시 3 (WHERE 절은 레코드를 선택하는 기준을 제공한다. 예로 title이 'Head First'로 시작되는 레코드만 선택하려면 다음과 같다.)
+  SELECT * FROM books WHERE title LIKE 'Head First%';
+  
+  키워드 LIKE : 문자열 비교 시 사용 (와일드카드를 가지고 있는 패턴 사용 가능)
+  와일드카드 %, 'Head First%' : 문자열 Head First에 0개 이상의 문자를 더하는 것을 의미
+  와일드카드 _ : 하나의 글자 대신 사용 가능
+  
+  // 예시 4 (where 절에서 등호와 부등호를 통해 숫자 비교 가능)
+  SELECT * FROM books WHERE price > 30000 and price < 50000;
+  
+  
+  // 에시 5 (레코드를 정렬하여 출력하려면 ORDER BY 사용)
+  SELECT * FROM books ORDER BY year; // 연도로 정렬하여 출력
+  
+  ```
+
+  
+
