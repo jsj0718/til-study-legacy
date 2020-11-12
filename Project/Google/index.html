@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko"> <!-- 웹 페이지가 무슨 언어로 되어있는지 작성하는 곳 -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jungle</title> <!-- 웹 페이지 제목 표시하는 태그 -->
+    <!-- 코드 아래 줄에 있을수록 우선순위가 높기 때문에 우리가 작성한 CSS 파일을 아래에 둔다. -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<!-- 마크업 : 웹 페이지 뼈대를 잡아주는 HTML을 작성하는 일 -->
+<body>
+    <h1><span>J</span><span>u</span><span>n</span><span>g</span><span>l</span><span>e</span></h1>
+    <!-- action은 어디로 향할건지의 주소 -->
+    <!-- method는 데이터 전송 방식 GET : 주소창에 정보를 포함해서 전달하는 방식 POST : 주소창에 정보를 표시하지 않고 내부적으로 정보를 전달하는 방식 -->
+    <form action="https://www.google.com/search" method="GET"> <!-- 정보를 전송하는 태그 -->
+        <!-- 하나의 태그에 여러 개의 class를 적용하는 법 : 띄어쓰기로 여러 개 작성하면 된다. -->
+        <!-- mx-auto는 부트스트랩에서 제공하는 기능으로 클래스 추가만 해도 가운데 정렬이 된다. -->
+        <!-- mt-5은 margine top 5라는 의미로 간격을 5정도 두라는 뜻이다. -->
+        <div class="search_bar mx-auto mt-5 input-group mb-3">
+            <input name="q" type="text" class="form-control rounded-pill" placeholder="Jungle 검색 또는 URL 입력" aria-label="Recipient's username" aria-describedby="button-addon2">
+        </div>
+    </form> 
+</body>
+</html>
+
+<!-- Bootstrap, codepen 참조하기! -->

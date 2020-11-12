@@ -1,0 +1,34 @@
+h1 {
+    text-align : center;
+    margin-top: 230px;
+    font-size: 50px;
+}
+
+/* h1 span은 h1 안의 span을 의미, span:nth-child()는 span 중 몇 번째 자식인지 나타내는 의미 */
+h1 span:nth-child(1) {
+    color: #4285f4;
+}
+
+h1 span:nth-child(2) {
+    color: #ea4335;
+}
+
+h1 span:nth-child(3) {
+    color: #fbbc05;
+}
+
+h1 span:nth-child(4) {
+    color: #4285f4;
+}
+
+h1 span:nth-child(5) {
+    color: #34a853;
+}
+
+h1 span:nth-child(6) {
+    color: #ea4335;
+}
+
+.search_bar {
+    width : 500px;
+}
