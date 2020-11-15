@@ -144,5 +144,80 @@ end
 
 ![image-20201114235107638](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20201114235107638.png)
 
+* 루비 언어를 사용하기 위해 <% %> 나 <%= %>를 사용한다.
 * @posts에 담긴 변수를 each로 하나씩 빼서 post에 담은 후 출력한다.
-* <% %>는 화면 출력 X, <%= %>는 화면 출력
+* <% %>는 내부 처리, <%= %>는 화면 출력 O
+
+![image-20201115000033254](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20201115000033254.png)
+
+
+
+8. Update 구현하기
+
+![image-20201115000436138](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20201115000436138.png)
+
+```html
+<!-- id라는 파라미터(input의 name)로 <%= post.id %>(input의 value)인 데이터를 전달 -->
+
+<a href="/edit?id=<%= post.id %>">수정하기</a> 
+```
+
+
+
+* 라우터에 edit 추가하기
+
+![image-20201115000611022](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20201115000611022.png)
+
+
+
+* 컨트롤러에 edit 추가하기
+
+![image-20201115000835667](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20201115000835667.png)
+
+
+
+* 수정 화면을 만들기 위해 새로운 view 생성
+
+![image-20201115001047232](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20201115001047232.png)
+
+
+
+
+
+* Edit View 페이지 코딩
+
+![image-20201115002825141](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20201115002825141.png)
+
+
+
+* update 구현을 위해 라우터에 추가하기
+
+![image-20201115001706738](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20201115001706738.png)
+
+
+
+* Controller에 update 부분 추가
+
+![image-20201115002046293](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20201115002046293.png)
+
+
+
+
+
+9. Delete 구현하기
+
+* view 파일 (index.html.erb)에 삭제하기 링크 생성
+
+![image-20201115003027948](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20201115003027948.png)
+
+
+
+* 라우터에 delete 추가
+
+![image-20201115003116948](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20201115003116948.png)
+
+
+
+* 컨트롤러에 delete 추가
+
+![image-20201115003249446](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20201115003249446.png)
