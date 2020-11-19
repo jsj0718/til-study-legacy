@@ -1,3 +1,5 @@
+# https://wikidocs.net/61209 참고
+
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import urllib.request
