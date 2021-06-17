@@ -36,7 +36,7 @@ public class Example_10818 {
 		bw.flush();
 		bw.close();
 		
-		/* 다른 풀이 방법	
+		/* �ٸ� Ǯ��	
 		 	int maxVal = 0;
 			int index = 0;
 			for(int i=0; i<9; i++) {
