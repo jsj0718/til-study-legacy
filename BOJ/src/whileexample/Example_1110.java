@@ -15,5 +15,7 @@ public class Example_1110 {
 		} while (result != num);
 		
 		System.out.println(count);
+		
+		sc.close();
 	}
 }
