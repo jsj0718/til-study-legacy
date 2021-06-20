@@ -5,26 +5,26 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Main {
-
+	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
-		int[] array = new int[42];
+		int roomNum = Integer.parseInt(br.readLine());
 		
-		for (int i=0; i<10; i++) {
-			int val = Integer.parseInt(br.readLine());
-			if (array[val%42] == 0) {
-				array[val%42]++;
+		int count = 1;
+		int n1 = 0;
+		int n2 = 0;
+		while (true) {
+			n2++;
+			if ((6*(n1) + 1) < roomNum) {
+				n1 += n2;
+				count += 1;
+			} else {
+				break;
 			}
 		}
-		br.close();
 		
-		int result = 0;
-		for (int i=0; i<array.length; i++) {
-			result += array[i];
-		}
-		
-		System.out.println(result);
+		System.out.println(count);
 	}
-
+	
 }
