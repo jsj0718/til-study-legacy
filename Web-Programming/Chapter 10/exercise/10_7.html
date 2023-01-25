@@ -1,0 +1,19 @@
+<script>
+    function checkNumber(field) {
+        var exp = /^[0-9]+$/
+        if (field.value.match(exp)) {
+            return true;
+        }
+        else {
+            alert("숫자가 아닙니다!");
+            field.focus();
+            return false;
+        }
+    }
+</script>
+
+<form>
+    <p>숫자를 입력하시오.</p>
+
+    <input type="text" id="number"> <input type="button" value="입력 완료" onclick="checkNumber(document.getElementById('number'))">
+</form>

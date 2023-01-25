@@ -1,0 +1,14 @@
+<script>
+    function checkTextEmpty(field) {
+        if (field.value.length == 0) {
+            alert("필드가 빔");
+            field.focus();
+            return false;
+        }
+        return true;
+    }
+</script>
+
+<form>
+    아이디 : <input type="text" id="user"> <input type="button" value="확인" onclick="checkTextEmpty(document.getElementById('user'))">
+</form>

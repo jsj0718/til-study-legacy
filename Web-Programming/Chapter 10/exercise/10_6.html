@@ -1,0 +1,11 @@
+<script>
+    function changeElem(elem, msg) {
+        elem.innerHTML = msg; // 요소의 콘텐츠를 변경하고 싶다면, innerHTML을 이용한다!
+    }
+</script>
+
+<div id="test">
+    버튼을 누르면 이 요소의 내용이 변경됩니다.
+</div>
+
+<input type="button" value="버튼을 누르세요!" onclick="changeElem(document.getElementById('test'), '이 텍스트는 자바스크립트에서 변경한 것입니다.')">

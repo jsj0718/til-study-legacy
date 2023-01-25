@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function divPrint() {
+            var s = document.getElementById("main").innerHTML;
+            alert(s);
+        }
+
+        function divChange(v) {
+            document.getElementById("main").innerHTML = v;
+        }
+    </script>
+</head>
+<body>
+    <div id="main">여기가 div로 선언되었습니다.</div>
+    <a href="#" onclick="divPrint()">div 요소 내용 출력하기</a> <br>
+    <a href="#" onclick="divChange('변경되었습니다.')">div 요소 내용 변경하기</a>
+</body>
+</html>

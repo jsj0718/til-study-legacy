@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var a = 0;
+        var startTime = new Date().getTime(); // 계산 전 시간을 밀리초로 변경 (1970/1/1 기준)
+
+        for (var i = 0; i <= 1000000; i++) {
+            a += i
+        }
+
+        var endTime = new Date().getTime(); // 계산이 끝난 후의 시간을 밀리초로 변경 (1970/1/1 기준)
+        var diff = endTime - startTime;
+
+        document.write(diff + "밀리초가 걸렸음")
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

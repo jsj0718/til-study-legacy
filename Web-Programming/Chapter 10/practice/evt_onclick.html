@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        function changeColor(c) {
+            document.getElementById("test").style.backgroundColor = c;
+        }
+    </script>
+</head>
+<body id="test">
+    <form method="POST">
+        <input type="radio" name="C1" value="v1" onclick="changeColor('lightblue')"> 파란색
+        <input type="radio" name="C1" value="v2" onclick="changeColor('lightgreen')"> 녹색
+    </form>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<script>
+    function checkIdLength(field, min, max) {
+        if (field.value.length >= 6 & field.value.length <= 8) {
+            return true;
+        }
+        else {
+            alert(min + "문자와" + max + "문자 사이로 입력!");
+            field.focus();
+            return false;
+        }
+    }
+</script>
+
+<form>
+    이름(6-8문자) : <input type="text" id="user"> <input type="button" value="확인" onclick="checkIdLength(document.getElementById('user'), 6, 8)">
+</form>

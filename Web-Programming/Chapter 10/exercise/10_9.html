@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function checkName() {
+            var status = document.getElementById("msg1");
+            var elem = document.getElementById("name");
+            var exp = /^[a-zA-Z]*$/;
+            if (!elem.value.match(exp)) {
+                status.innerHTML = "올바른 이름을 입력하세요.";
+            }
+            else if (elem.value.length == 0) {
+                status.innerHTML = "이름을 입력하세요"
+            }
+            else {
+                status.innerHTML = "";
+            }
+        }
+
+        function checkGender() {
+            var checkRadio = document.getElementsByName("gender");
+            var cnt = 0;
+            
+            for (var i = 0; i < checkRadio.length; i++) {
+                if (checkRadio[i].checked == true) {
+                    cnt++;
+                }
+            }
+            
+            if (cnt < 1) {
+                document.getElementById("msg2").innerHTML = "성별을 선택하세요.";
+            }
+            else {
+                document.getElementById("msg2").innerHTML = "";
+            }
+        }
+
+        function checkPhoneNumber() {
+            var status = document.getElementById("msg3");
+            var elem = document.getElementById("phoneNumber");
+            var exp = /^(010){1}-[0-9]{4}-[0-9]{4}$/;
+            if (elem.value.length == 0) {
+                status.innerHTML = "휴대폰 번호를 입력하세요"
+            }
+            else if (!elem.value.match(exp)) {
+                status.innerHTML = "올바른 번호를 입력하세요.";
+            }
+            else {
+                status.innerHTML = "";
+            }
+        }
+
+        function checkEmail() {
+            var status = document.getElementById("msg4");
+            var elem = document.getElementById("email");
+            var exp = /^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-Z0-9]{2,}$/;
+            if (elem.value.length == 0) {
+                status.innerHTML = "이메일을 입력하세요"
+            }
+            else if (!elem.value.match(exp)) {
+                status.innerHTML = "올바른 이메일을 입력하세요.";
+            }
+            else {
+                status.innerHTML = "";
+            }
+        }
+
+        function checkPw() {
+            var status = document.getElementById("msg5");
+            var elem = document.getElementById("pw1");
+            if (elem.value.length == 0) {
+                status.innerHTML = "비밀번호를 입력하세요"
+            }
+            else if (elem.value.length >= 6 && elem.value.length <= 8) {
+                status.innerHTML = "";
+            }
+            else {
+                status.innerHTML = "6~8 자리의 비밀번호를 입력하세요.";
+            }
+        }
+
+        function equalPw() {
+            var status = document.getElementById("msg6");
+            var elem = document.getElementById("pw2");
+            if (elem.value == 0 | elem.value == document.getElementById("pw1").value) {
+                status.innerHTML = ""
+            }
+            else {
+                status.innerHTML = "비밀번호가 다릅니다."
+            }
+        }
+    </script>
+
+    <style>
+        p {
+            display : inline-block;
+            width : 160px;
+        }
+        input {
+            display : inline-block;
+            width : 160px;
+        }
+        em {
+            color : red;
+        }
+    </style>
+
+</head>
+<body>
+    <form>
+        <h1>회원 신청서</h1>
+
+        <p>이름*</p></label> <input type="text" id="name" size="20"> <em id="msg1"></em> <br>
+        <p>성별*</p> <input style="width : 10px;" type="radio" name="gender" value="male"> 남성 <input style="width : 10px;" type="radio" name="gender" value="female"> 여성 <em id="msg2"></em> <br>
+        <p>휴대폰 번호 Phone*</p> <input type="text" id="phoneNumber"> <em id="msg3"></em> <br>
+        <p>이메일*</p> <input type="text" id="email"> <em id="msg4"></em> <br> 
+        <p>패스워드(6~8글자)*</p> <input type="password" id="pw1"> <em id="msg5"></em> <br>
+        <p>패스워드 검증*</p> <input type="password" id="pw2"> <em id="msg6"></em> <br> 
+
+        <input type="button" value="제출" onclick="checkName(); checkGender(); checkPhoneNumber(); checkEmail(); checkPw(); equalPw()"> 
+        <input type="reset" value="지우기">
+    </form>
+</body>
+</html>

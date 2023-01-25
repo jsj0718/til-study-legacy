@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var song = {singer : "태연", song_length : "3:45", song_title : "날개"}
+        var txt1 = ""
+        var txt2 = ""
+        // song 객체의 속성(singer, song_length, song_title)을 x 변수에 대입 후 속성을 이용해 value를 출력
+        for (var x in song) { 
+            txt1 += x + " "
+            txt2 += song[x] + " "
+        }
+        document.write(txt1 + "<br>");
+        document.write(txt2);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

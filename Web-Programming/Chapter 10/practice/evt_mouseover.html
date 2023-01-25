@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function borderOn() {
+            var s = document.getElementById("test");
+            s.style.border = "2px solid red";
+        }
+
+        function borderOff() {
+            var s = document.getElementById("test");
+            s.style.border = ""
+        }
+    </script>
+</head>
+<body>
+    <div id="test" style="background-color: yellow;" width="200px" onmouseover="borderOn()" onmouseout="borderOff()">
+        마우스!
+    </div> 
+</body>
+</html>

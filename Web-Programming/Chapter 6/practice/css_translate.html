@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>translate</title>
+    <style>
+        p {
+            border : 1px solid black;
+            width : 50px;
+            height : 50px;
+            text-align : center;
+        }
+        #one {
+            background : yellow;
+        }
+        #two {
+            background-color: blue;
+            transform:translate(100px, 0px);
+        }
+        #three {
+            background-color: red;
+            transform:scale(1.2, 1.2)
+        }
+        #four {
+            background-color: green;
+            transform:rotate(35deg);
+        }
+    </style>
+</head>
+<body>
+    <p id="one">box1</p>
+    <p id="two">box2</p>
+    <p id="three">box3</p>
+    <p id="four">box4</p>
+</body>
+</html>

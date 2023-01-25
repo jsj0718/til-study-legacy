@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        function calc(type) {
+            var x = Number(document.calculator.number.value); // x는 document의 calculator(form)의 number(입력) 값이다.
+            var y;
+            if (type == 1) {
+                y = Math.sin((x * Math.PI) / 180.0)
+            }
+            else if (type == 2) {
+                y = Math.log(x);
+            }
+            else if (type == 3) {
+                y = Math.sqrt(x);
+            }
+            else if (type == 4) {
+                y = Math.abs(x);
+            }
+            document.calculator.result.value = y; // document의 calculator(form)의 result(계산 결과)의 값은 y이다.
+        }
+    </script>
+</head>
+<body>
+    <form name="calculator">
+        입력 : <input type="text" id="number"> <br>
+        계산 결과 : <input type="text" id="result"> <br>
+        <input type="button" value="SIN" onclick="calc(1)">
+        <input type="button" value="LOG" onclick="calc(2)">
+        <input type="button" value="SQRT" onclick="calc(3)">
+        <input type="button" value="ABS" onclick="calc(4)">
+    </form>
+</body>
+</html>

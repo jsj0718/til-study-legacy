@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculator</title>
+    <script>
+        function calc() {
+            var x = document.getElementById("x").value; // id가 "x"인 요소를 가져온다.
+            var y = document.getElementById("y").value; // id가 "y"인 요소를 가져온다.
+            var sum;
+            sum = parseInt(x) + parseInt(y); // x와 y를 숫자형으로 바꾼 후 변환해서 합친다.
+            document.getElementById("sum").value = sum; // id가 "sum"인 요소에 변수 sum의 값을 대입한다.
+        }
+    </script>
+</head>
+<body>
+    <h3>덧셈 계산기</h3>
+
+    <form name="myform" action="..." method="post">
+        첫 번째 정수 : <input id="x"> <br>
+        두 번째 정수 : <input id="y"> <br>
+        합계 : <input id="sum"> <br>
+        <input type="button" value="계산" onclick="calc();">
+    </form>
+</body>
+</html>
