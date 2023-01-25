@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Starcraft</title>
+</head>
+<body>
+    <img id="cloaking" src="image/Cloaking.jpg" alt="cloaking" width="50px" height="50px">
+    <img id="wraith" src="image/Wraith.jpg" alt="wraith">
+
+    <script
+    src="https://code.jquery.com/jquery-3.5.1.js"
+    integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <!-- <script>
+        // document가 준비되면 ready() 실행, #cloaking을 클릭하면 click() 실행, #wraith가 사라지고 나타나게 하는 toggle() 실행
+        $(document).ready(function(){
+            $("#cloaking").click(function(){
+                $("#wraith").toggle();
+            })
+        });
+    </script> -->
+    
+    <script>
+        $( function() {
+            $( "#wraith" ).draggable();
+        } );
+
+        $( "#cloaking" ).first().click(function() {
+            $( "#wraith" ).first().fadeToggle( "slow", "linear" );
+        });
+
+    </script>
+
+</body>
+</html>

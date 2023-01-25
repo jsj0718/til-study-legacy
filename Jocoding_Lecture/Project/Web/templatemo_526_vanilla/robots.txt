@@ -1,0 +1,4 @@
+User-agent: *
+Allow:/
+
+Sitemap: https://jsj0718.netlify.app/sitemap.xml
