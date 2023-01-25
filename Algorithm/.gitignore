@@ -1,0 +1,24 @@
+
+#사용법
+
+#1. config 디렉토리 무시
+
+# config/
+
+ 
+
+#2. db_conn.php 파일 무시
+
+# db_conn.php
+
+ 
+
+#3. sql 확장자 무시
+
+# *.sql
+
+ 
+
+# 주석사용 방법 : #
+
+/TeamNotes
